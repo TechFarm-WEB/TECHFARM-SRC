@@ -18,32 +18,290 @@ body {
   text-align: center;
   margin-top: 100px;
 }
+/* RESET AND BASE STYLES : Removes default browser spacing */
+/* Remove default margins and padding from all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes padding and border included in element's total width/height */
+}
+
+/* Set up the body with our chosen font and colors */
+body {
+    font-family: 'Poppins', 'Roboto', 'Inter', sans-serif;
+    background-color: white;
+    color: black;
+    line-height: 1.6; /* Makes text more readable with proper spacing */
+}
+
+/*NAVIGATION BAR STYLES: Navbar styling - Makes the navigation bar fixed at the top with white background */
 .navbar {
-  background-color: #333;
-  padding: 10px 20px;
+    background-color: white;
+    padding: 15px 30px; /* Top/bottom: 15px, Left/right: 30px */
+    position: fixed; /* Stays at top when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex; /* Flexbox for easy alignment: to put logo on left and menu on right */
+    justify-content: space-between; /* Logo left, menu right */
+    align-items: center; /* Vertically center items */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensures navbar stays on top of other content */
+    transition: all 0.3s ease; /* Smooth transitions for any changes */
+}
+
+/* ===== LOGO SECTION ===== */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between logo image and text */
+}
+
+.logo-image {
+    width: 60px; /* Set logo size */
+    height: 60px;
+    object-fit: contain; /* Maintains aspect ratio */
+    border-radius: 4px; /* Slightly rounded corners */
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0a0a0a; /* Tech Farm green color */
+    text-decoration: none;
+}
+
+/* ===== NAVIGATION MENU ===== */
+.navbar-menu {
+    list-style: none; /* Removes bullet points */
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between menu items */
+}
+
+.navbar-item {
+    display: inline-block;
+}
+
+.navbar-link {
+    text-decoration: none; /* Removes underline from links */
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 16px; /* Adds clickable area around text */
+    border-radius: 4px; /* Rounded corners for hover effect */
+    transition: all 0.3s ease; /* Smooth color/background changes */
+    position: relative;
+}
+
+/* Hover effects for navigation links: Hover effects - Changes color and adds background when you hover over links */
+.navbar-link:hover {
+    color: #00C853; /* Changes text color on hover */
+    background-color: rgba(0, 200, 83, 0.1); /* Light green background */
+    transform: translateY(-1px); /* Slight upward movement */
+}
+
+/* Active/clicked state */
+.navbar-link:active {
+    transform: translateY(0); /* Returns to normal position when clicked */
+}
+
+/*MOBILE MENU TOGGLE : Mobile menu - Shows hamburger menu on small screens */
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    gap: 4px;
+}
+
+/* Hamburger menu lines */
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* ===== MAIN CONTENT STYLES ===== */
+.main-content {
+    margin-top: 80px; /* Adds space so content isn't hidden behind fixed navbar */
+    padding: 0;
+}
+
+.section {
+    min-height: 50vh; /* Each section takes at least half the screen height */
+    padding: 60px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+.section-content h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-content p {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/*RESPONSIVE DESIGN FOR MOBILE 
+
+/*  Hero Section with Video Styles */
+
+.hero-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg-video {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
-.navbar ul {
-  list-style: none;
+
+.hero-content {
+  position: relative;
+  z-index: 2;
   display: flex;
-  justify-content: flex-end; /* Right align items */
-  gap: 20px;
-  margin: 0;
-  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* Optional dark overlay */
+  padding: 40px;
 }
 
-.navbar li {
-  display: inline;
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
-.navbar a {
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.hero-cta {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #00b894;
   color: white;
   text-decoration: none;
-  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.navbar a:hover {
-  text-decoration: underline;
+.hero-cta:hover {
+  background-color: #019875;
+}
+/* Services Section */
+
+.services-overview {
+  padding: 40px 20px;
+  background-color: #f9f9f9; /* Light background */
+}
+
+.services-overview .section-content {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.services-overview h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.services-overview p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.service-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  object-fit: contain;
+}
+
+.service-card h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }

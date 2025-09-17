@@ -4,18 +4,122 @@
   <meta charset="UTF-8">
   <title>Company Branding</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&display=swap" rel="stylesheet" />
+
 </head>
 <body>
 
-  <div id="app"></div>
-<nav class="navbar">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
+   <!-- Navigation Bar: - Creates the navigation bar container -->
+  <nav class="navbar">
+    <!-- Logo Container : Holds your logo image and "Tech Farm" text-->
+    <div class="navbar-logo">
+      <img src="images/logo.png" alt="Tech Farm Logo" class="logo-image">
+      <span class="logo-text">Tech Farm</span>
+    </div>
+
+    <!-- Navigation Menu: Creates the menu items (Home, About, Services, Contact) -->
+    <ul class="navbar-menu">
+      <li class="navbar-item">
+        <a href="#home" class="navbar-link">Home</a>
+      </li>
+      <li class="navbar-item">
+        <a href="#about" class="navbar-link">About</a>
+      </li>
+      <li class="navbar-item">
+        <a href="#services" class="navbar-link">Services</a>
+      </li>
+      <li class="navbar-item">
+        <a href="#contact" class="navbar-link">Contact</a>
+      </li>
     </ul>
+
+    <!-- Mobile Menu Toggle Button (for responsive design): The hamburger menu for mobile devices -->
+    <button class="mobile-menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
-  <script src="script.js"></script>
+
+  <!-- Main Content Area: The main content area with different sections -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section id="home" class="section">
+      <div class="section-content">
+        <h1>Empowering Tomorrow, Today.</h1>
+        <p>Welcome to Tech Farm - Your technology partner</p>
+      </div>
+    </section>
+
+    <!--  Hero Section with Video Background -->
+<section class="hero-video">
+  <video autoplay muted loop playsinline class="hero-bg-video">
+    <source src="videos/hero_banner.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="hero-content">
+    <h1 class="hero-title">Welcome to TechFarm</h1>
+    <p class="hero-subtitle">Innovating the Future, Today.</p>
+    <a href="#contact" class="hero-cta">Get Started</a>
+  </div>
+</section>
+  </main>
+
+  
+
+
+ 
+
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="section-content">
+        <h2>About Us</h2>
+        <p>Learn more about our mission and vision</p>
+      </div>
+    </section>
+
+    <!-- Services Overview Section -->
+<section id="services" class="services-overview section">
+  <div class="section-content">
+    <h2>Our Services</h2>
+    <p>Comprehensive technology solutions for modern businesses</p>
+  </div>
+  
+  <div class="services-grid">
+    <!-- Service Card 1 -->
+    <div class="service-card">
+      <img src="images/web-development.jpg" alt="Website Development Icon" />
+      <h3>Website Development</h3>
+      <p>We build responsive, modern websites tailored to your business needs.</p>
+    </div>
+
+    <!-- Service Card 2 -->
+    <div class="service-card">
+      <img src="images/data_manage.png" alt="Data Management Icon" />
+      <h3>Data Management</h3>
+      <p>Organize, store, and analyze your data securely and efficiently.</p>
+    </div>
+
+    <!-- Service Card 3 -->
+    <div class="service-card">
+      <img src="images/custom_sol.jpg" alt="Custom Technology Solutions Icon" />
+      <h3>Custom Tech Solutions</h3>
+      <p>Get tailored software solutions to streamline your operations.</p>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="section-content">
+        <h2>Contact</h2>
+        <p>Get in touch with our team</p>
+      </div>
+    </section>
+
+     <script src="script.js"></script>
 </body>
 </html>

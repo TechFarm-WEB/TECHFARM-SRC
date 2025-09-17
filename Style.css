@@ -1,0 +1,583 @@
+/* RESET AND BASE STYLES : Removes default browser spacing */
+/* Remove default margins and padding from all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes padding and border included in element's total width/height */
+}
+
+/* Set up the body with our chosen font and colors */
+body {
+    font-family: 'Poppins', 'Roboto', 'Inter', sans-serif;
+    background-color: white;
+    color: black;
+    line-height: 1.6; /* Makes text more readable with proper spacing */
+}
+
+/*NAVIGATION BAR STYLES: Navbar styling - Makes the navigation bar fixed at the top with white background */
+.navbar {
+    background-color: white;
+    padding: 15px 30px; /* Top/bottom: 15px, Left/right: 30px */
+    position: fixed; /* Stays at top when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex; /* Flexbox for easy alignment: to put logo on left and menu on right */
+    justify-content: space-between; /* Logo left, menu right */
+    align-items: center; /* Vertically center items */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensures navbar stays on top of other content */
+    transition: all 0.3s ease; /* Smooth transitions for any changes */
+}
+
+/* ===== LOGO SECTION ===== */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between logo image and text */
+}
+
+.logo-image {
+    width: 60px; /* Set logo size */
+    height: 60px;
+    object-fit: contain; /* Maintains aspect ratio */
+    border-radius: 4px; /* Slightly rounded corners */
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0a0a0a; /* Tech Farm green color */
+    text-decoration: none;
+}
+
+/* ===== NAVIGATION MENU ===== */
+.navbar-menu {
+    list-style: none; /* Removes bullet points */
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between menu items */
+}
+
+.navbar-item {
+    display: inline-block;
+}
+
+.navbar-link {
+    text-decoration: none; /* Removes underline from links */
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 16px; /* Adds clickable area around text */
+    border-radius: 4px; /* Rounded corners for hover effect */
+    transition: all 0.3s ease; /* Smooth color/background changes */
+    position: relative;
+}
+
+/* Hover effects for navigation links: Hover effects - Changes color and adds background when you hover over links */
+.navbar-link:hover {
+    color: #00C853; /* Changes text color on hover */
+    background-color: rgba(0, 180, 75, 0.1); /* Light green background */
+    transform: translateY(-1px); /* Slight upward movement */
+}
+
+/* Active/clicked state */
+.navbar-link:active {
+    transform: translateY(0); /* Returns to normal position when clicked */
+}
+
+/*MOBILE MENU TOGGLE : Mobile menu - Shows hamburger menu on small screens */
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    gap: 4px;
+}
+
+/* Hamburger menu lines */
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* ===== MAIN CONTENT STYLES ===== */
+.main-content {
+    margin-top: 80px; /* Adds space so content isn't hidden behind fixed navbar */
+    padding: 0;
+}
+
+.section {
+    min-height: 50vh; /* Each section takes at least half the screen height */
+    padding: 60px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+.section-content h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-content p {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+/* ===== Watermark  section with span: On removing these two section of watermark and watermark span these will remove===== */
+
+.watermark {
+  position: fixed;         /* stays put while scrolling */
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -40%) rotate(-30deg); /* center + tilt for rhombus look */
+  width: 60vw;
+  height: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;    /* doesn't block clicks */
+  z-index: 1000;
+}
+.watermark span {
+  font-size: 5vw;          /* scales with screen */
+  color: rgba(255, 0, 0, 0.15);
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+}
+
+/*  Hero Section with Video Styles */
+
+.hero-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* Optional dark overlay */
+  padding: 40px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.hero-cta {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #00b894;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-cta:hover {
+  background-color: #019875;
+
+}
+
+
+/* Services Section */
+
+.services-overview {
+  padding: 40px 20px;
+  background-color: #f9f9f9; /* Light background */
+}
+
+.services-overview .section-content {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.services-overview h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.services-overview p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.service-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  object-fit: contain;
+}
+
+.service-card h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+}
+
+
+/* ===== TESTIMONIALS SECTION STYLES ===== */
+.testimonials-section {
+    background-color: #f8f9fa; /* Light grey background */
+    padding: 80px 0;
+    min-height: auto;
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Testimonials Grid Layout */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Individual Testimonial Card */
+.testimonial-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect for cards */
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Logo styling */
+.testimonial-logo {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* Fixed height for consistent layout */
+}
+
+.testimonial-logo .logo-image {
+    width: 60px;
+    height: auto;
+    max-height: 60px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-logo .logo-image {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+}
+
+/* Testimonial content */
+.testimonial-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Quote marks styling */
+.testimonial-text::before {
+    content: '"';
+    font-size: 60px;
+    color: #4CAF50;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+}
+
+.testimonial-text::after {
+    content: '"';
+    font-size: 60px;
+    color: #4CAF50;
+    position: absolute;
+    bottom: -40px;
+    right: -10px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+}
+
+/* Client name styling */
+.client-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Company name styling */
+.company-name {
+    font-size: 14px;
+    color: #4CAF50;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/*RESPONSIVE DESIGN FOR MOBILE 
+
+Adapts to mobile screens with*/
+@media (max-width: 768px) {
+    /* Adjust navbar for mobile */
+    .navbar {
+        padding: 10px 20px;
+    }
+    
+    /* Hide desktop menu on mobile */
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Show menu when active */
+    .navbar-menu.active {
+        display: flex;
+    }
+    
+    /* Style mobile menu items */
+    .navbar-menu.active .navbar-item {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar-menu.active .navbar-link {
+        display: block;
+        padding: 15px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Responsive tweaks: Service section */
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+    
+    /* Show hamburger menu on mobile */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    /* Smaller logo on mobile */
+    .logo-image {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .section-content p {
+        font-size: 1rem;
+    }
+}
+/* ===== RESPONSIVE DESIGN FOR TESTIMONIALS ===== */
+@media (max-width: 768px) {
+    .testimonials-section {
+        padding: 60px 0;
+    }
+    
+    .testimonials-container {
+        padding: 0 20px;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .section-header p {
+        font-size: 1rem;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .testimonial-card {
+        padding: 25px 20px;
+    }
+    
+    .testimonial-text {
+        font-size: 14px;
+    }
+    
+    .client-name {
+        font-size: 16px;
+    }
+    
+    .company-name {
+        font-size: 13px;
+    }
+    
+    .testimonial-logo .logo-image {
+        width: 50px;
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonial-card {
+        padding: 20px 15px;
+    }
+}
+/* ===== ANIMATION FOR MOBILE MENU TOGGLE ===== */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}

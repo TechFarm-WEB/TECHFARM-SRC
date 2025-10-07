@@ -229,73 +229,424 @@ body {
 
 }
 
+/* ===== RESET AND BASE STYLES ===== */
+/* Remove default margins and padding from all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes padding and border included in element's total width/height */
+}
 
-/* Services Section */
+/* Set up the body with our chosen font and colors */
+body {
+    font-family: 'Poppins', 'Roboto', 'Inter', sans-serif;
+    background-color: white;
+    color: black;
+    line-height: 1.6; /* Makes text more readable with proper spacing */
+}
 
+/* ===== NAVIGATION BAR STYLES ===== */
+.navbar {
+    background-color: white;
+    padding: 15px 30px; /* Top/bottom: 15px, Left/right: 30px */
+    position: fixed; /* Stays at top when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex; /* Flexbox for easy alignment */
+    justify-content: space-between; /* Logo left, menu right */
+    align-items: center; /* Vertically center items */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensures navbar stays on top of other content */
+    transition: all 0.3s ease; /* Smooth transitions for any changes */
+}
+
+/* ===== LOGO SECTION ===== */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between logo image and text */
+}
+
+.logo-image {
+    width: 40px; /* Set logo size */
+    height: 40px;
+    object-fit: contain; /* Maintains aspect ratio */
+    border-radius: 4px; /* Slightly rounded corners */
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #4CAF50; /* Tech Farm green color */
+    text-decoration: none;
+}
+
+/* ===== NAVIGATION MENU ===== */
+.navbar-menu {
+    list-style: none; /* Removes bullet points */
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between menu items */
+}
+
+.navbar-item {
+    display: inline-block;
+}
+
+.navbar-link {
+    text-decoration: none; /* Removes underline from links */
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 16px; /* Adds clickable area around text */
+    border-radius: 4px; /* Rounded corners for hover effect */
+    transition: all 0.3s ease; /* Smooth color/background changes */
+    position: relative;
+}
+
+/* Hover effects for navigation links */
+.navbar-link:hover {
+    color: #00C853; /* Changes text color on hover */
+    background-color: rgba(0, 200, 83, 0.1); /* Light green background */
+    transform: translateY(-1px); /* Slight upward movement */
+}
+
+/* Active/clicked state */
+.navbar-link:active {
+    transform: translateY(0); /* Returns to normal position when clicked */
+}
+
+/* ===== MOBILE MENU TOGGLE ===== */
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    gap: 4px;
+}
+
+/* Hamburger menu lines */
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* ===== MAIN CONTENT STYLES ===== */
+.main-content {
+    margin-top: 80px; /* Adds space so content isn't hidden behind fixed navbar */
+    padding: 0;
+}
+
+.section {
+    min-height: 50vh; /* Each section takes at least half the screen height */
+    padding: 60px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+.section-content h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-content p {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ===== RESPONSIVE DESIGN FOR MOBILE ===== */
+@media (max-width: 768px) {
+    /* Adjust navbar for mobile */
+    .navbar {
+        padding: 10px 20px;
+    }
+    
+    /* Hide desktop menu on mobile */
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Show menu when active */
+    .navbar-menu.active {
+        display: flex;
+    }
+    
+    /* Style mobile menu items */
+    .navbar-menu.active .navbar-item {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar-menu.active .navbar-link {
+        display: block;
+        padding: 15px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    /* Show hamburger menu on mobile */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    /* Smaller logo on mobile */
+    .logo-image {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    /* Smaller font sizes for mobile */
+    .navbar-link {
+        font-size: 14px;
+    }
+    
+    /* Adjust main content */
+    .main-content {
+        margin-top: 70px;
+    }
+    
+    .section-content h1 {
+        font-size: 2rem;
+    }
+    
+    .section-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-content p {
+        font-size: 1rem;
+    }
+}
+
+/* ===== SERVICES SECTION STYLES ===== */
 .services-overview {
-  padding: 40px 20px;
-  background-color: #f9f9f9; /* Light background */
+    background-color: white; /* White background to contrast with About section */
+    padding: 80px 20px;
+    min-height: auto;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .services-overview .section-content {
-  text-align: center;
-  margin-bottom: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 30px;
 }
 
-.services-overview h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.services-overview p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.1rem;
-  color: #555;
-}
-
+/* Services Grid Layout */
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
+/* Individual Service Card */
 .service-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    border: 2px solid #f0f0f0; /* Light border for subtle definition */
+    border-radius: 12px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
 }
 
+/* Hover effect for service cards */
 .service-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    border-color: #4CAF50; /* Green border on hover */
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15); /* Green-tinted shadow */
 }
 
-.service-card img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
-  object-fit: contain;
+/* Service Icon/Image Styling */
+.service-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    filter: grayscale(20%); /* Slight desaturation for consistency */
 }
 
+.service-card:hover .service-icon {
+    transform: scale(1.1);
+    filter: grayscale(0%); /* Full color on hover */
+}
+
+/* Service Card Headings */
 .service-card h3 {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
 }
 
-.service-card p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
-  color: #666;
-  line-height: 1.5;
+.service-card:hover h3 {
+    color: #4CAF50; /* Green color on hover */
 }
+
+/* Service Card Paragraphs */
+.service-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Add a subtle gradient overlay effect */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.02), rgba(76, 175, 80, 0.08));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+/* ===== RESPONSIVE DESIGN FOR SERVICES ===== */
+@media (max-width: 768px) {
+    .services-overview {
+        padding: 60px 0;
+    }
+    
+    .services-overview .section-content {
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 0 20px;
+    }
+    
+    .service-card {
+        padding: 25px 20px;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .service-card h3 {
+        font-size: 18px;
+    }
+    
+    .service-card p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 20px 15px;
+    }
+    
+    .service-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* ===== ABOUT US SECTION STYLES ===== */
+.about-us-section {
+    background-color: #f9f9f9; /* Light grey background for contrast */
+    padding: 80px 0;
+    min-height: auto;
+}
+
+.about-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* About Section Header */
+.about-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.about-header h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.about-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* About Content Grid - Responsive 3-column layout */
+.about-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Automatically fits columns based on screen size */
+    gap: 30px; /* Space between cards */
+    margin-top: 40px;
+}
+
 
 
 /* ===== TESTIMONIALS SECTION STYLES ===== */

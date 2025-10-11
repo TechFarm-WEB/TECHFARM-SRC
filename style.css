@@ -59,7 +59,6 @@ body {
     align-items: center;
     gap: 12px; /* Space between logo image and text */
 }
-
 .logo-image {
     width: 60px; /* Set logo size */
     height: 60px;
@@ -353,19 +352,19 @@ body {
 
 /* Testimonials Section Container */
 .testimonials-section {
-    padding: 80px 0;
+    padding: 30px 0;
     background-color: #f9f9f9;
 }
 
 .testimonials-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 /* Testimonials Grid Layout */
 .testimonials-grid {
-    display: grid;
+    display:flex;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 30px;
     margin-top: 40px;
@@ -374,7 +373,7 @@ body {
 /* Individual Testimonial Card */
 .testimonial-card {
     background: white;
-    border-radius: 50x  px;
+    border-radius: 5px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 35px 15px;
     text-align: center;
@@ -403,7 +402,6 @@ body {
     height: auto;
     max-height: 100px;
     object-fit: contain;
-    
     transition: all 0.3s ease;
 }
 
@@ -432,7 +430,7 @@ body {
 .testimonial-text::before {
     content: '"';
     font-size: 60px;
-    color: #4CAF50;
+    color: #040504;
     position: absolute;
     top: -20px;
     left: -10px;
@@ -462,7 +460,7 @@ body {
 /* Company name styling */
 .company-name {
     font-size: 14px;
-    color: #4CAF50;
+    color: #0a0a0a;
     font-weight: 500;
     font-style: normal;
     margin: 0;

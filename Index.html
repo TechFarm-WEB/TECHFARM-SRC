@@ -5,15 +5,18 @@
   <meta charset="UTF-8">
   <title>Company Branding</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&display=swap"
+    rel="stylesheet" />
+
 </head>
 
 <body>
+
   <!-- Navigation Bar: - Creates the navigation bar container -->
   <nav class="navbar">
     <!-- Logo Container : Holds your logo image and "Tech Farm" text-->
     <div class="navbar-logo">
-      <img src="Docs/images.png" alt="Tech Farm Logo" class="logo-image">
+      <img src="images/logoo.png" alt="Tech Farm Logo" class="logo-image">
       <span class="logo-text">Tech Farm</span>
     </div>
 
@@ -44,7 +47,6 @@
   <!-- Main Content Area: The main content area with different sections -->
   <main class="main-content">
     <!-- Hero Section -->
-    <!-- Hero Section -->
     <section id="home" class="section">
       <div class="section-content">
         <h1>Empowering Tomorrow, Today.</h1>
@@ -55,7 +57,7 @@
     <!--  Hero Section with Video Background -->
     <section class="hero-video">
       <video autoplay muted loop playsinline class="hero-bg-video">
-        <source src="Docs/Video/hero_banner.mp4" type="video/mp4" />
+        <source src="videos/hero_banner.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -65,59 +67,45 @@
         <a href="#contact" class="hero-cta">Get Started</a>
       </div>
     </section>
+  </main>
 
-    <!-- About Section -->
+  <!-- About Us Section -->
+  <section id="about" class="about-us section">
+    <div class="container">
+      <div class="about-header">
+        <!--<h2>About Us</h2>  --->
+        <p>Empowering businesses with smart, scalable, and secure technology solutions.</p>
+      </div>
 
-
-    <!-- About Us Section -->
-    <section id="about" class="about-us-section">
-      <div class="about-us-container">
-        <!-- Section Header -->
-        <div class="about-header">
-          <h2>About Tech Farm</h2>
+      <div class="about-cards">
+        <!-- Card 1 -->
+        <div class="about-card">
+          <img src="images/ABOUTUS.jpg" alt="ABOUT US  Icon" />
+          <div class="card-text">
+            <h3>Who We Are</h3>
+            <p>TECH FARM is a service-based IT company focused on delivering innovative solutions in website
+              development, data management, and custom technology. We help individuals, businesses, and institutions
+              thrive in the digital age.</p>
+          </div>
         </div>
 
-        <!-- About Content Grid -->
-        <div class="about-content-grid">
-          <!-- Mission Block -->
-          <div class="about-block mission-block">
-            <div class="about-icon">
-              🧭
-            </div>
-            <h3>Mission</h3>
-            <p>At Tech Farm, our mission is to empower individuals, businesses, and institutions by delivering
-              innovative digital solutions that simplify operations and enhance growth.</p>
-          </div>
-
-          <!-- Vision Block -->
-          <div class="about-block vision-block">
-            <div class="about-icon">
-              🌟
-            </div>
-            <h3>Vision</h3>
-            <p>To become a leading IT service provider known for reliability, creativity, and customer-centric
-              technology solutions.</p>
-          </div>
-
-          <!-- Unique Policy Block -->
-          <div class="about-block policy-block">
-            <div class="about-icon">
-              🛡️
-            </div>
-            <h3>Unique Company Policy</h3>
-            <p>We follow a "Client-First Development Policy", ensuring every solution is tailored to the client's needs,
-              with transparent communication, iterative feedback, and post-deployment support.</p>
+        <!-- Card 2 -->
+        <div class="about-card">
+          <img src="images/VISION2.jpg" alt="ABOUT US  Icon" />
+          <div class="card-text">
+            <h3>Our Vision</h3>
+            <p>To lead the future of technical farming and digital transformation through excellence, innovation, and
+              integrity.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-
-
-    <!-- Services Section -->
-    <!-- Services Overview Section -->
-    <section id="services" class="services-overview">
-      <div class="section-content">
+  <!-- Services Overview Section -->
+  <section id="services" class="services-overview section">
+    <div class="section-content">
+      <div class="section-header">
         <h2>Our Services</h2>
         <p>Comprehensive technology solutions for modern businesses</p>
       </div>
@@ -125,93 +113,134 @@
       <div class="services-grid">
         <!-- Service Card 1 -->
         <div class="service-card">
-          <img src="Docs/webDevelopment.png" alt="Website Development Icon" />
+          <img src="images/web-development.jpg" alt="Website Development Icon" />
           <h3>Website Development</h3>
           <p>We build responsive, modern websites tailored to your business needs.</p>
         </div>
 
         <!-- Service Card 2 -->
         <div class="service-card">
-          <img src="Docs/dataManagement.png" alt="Data Management Icon" />
+          <img src="images/data_manage.png" alt="Data Management Icon" />
           <h3>Data Management</h3>
           <p>Organize, store, and analyze your data securely and efficiently.</p>
         </div>
 
         <!-- Service Card 3 -->
         <div class="service-card">
-          <img src="Docs/customSolution.png" alt="Custom Technology Solutions Icon" />
+          <img src="images/custom_sol.jpg" alt="Custom Technology Solutions Icon" />
           <h3>Custom Tech Solutions</h3>
           <p>Get tailored software solutions to streamline your operations.</p>
         </div>
       </div>
-    </section>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="testimonials-container">
+      <div class="section-header">
+        <h2>Testimonials</h2>
+      </div>
 
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-      <div class="testimonials-container">
-        <div class="section-header">
-          <h2>Testimonials</h2>
+      <div class="testimonials-grid">
+        <!-- Testimonial Card 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-logo">
+            <img src="images/patel-logo.jpeg" alt="Patel AgroTech Logo" class="logo-image">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">"Tech Farm transformed our digital presence with a sleek website and reliable
+              data tools."</p>
+            <h3 class="client-name">Ramesh Patel</h3>
+            <h4 class="company-name">Patel AgroTech</h4>
+          </div>
         </div>
 
-
-        <div class="testimonials-grid">
-          <!-- Testimonial Card 1 -->
-          <div class="testimonial-card">
-            <div class="testimonial-logo">
-              <img src="/assets/logos/patel-agro.svg" alt="Patel AgroTech Logo" class="logo-image">
-            </div>
-            <div class="testimonial-content">
-              <p class="testimonial-text">"Tech Farm transformed our digital presence with a sleek website and reliable
-                data tools."</p>
-              <h3 class="client-name">Ramesh Patel</h3>
-              <h4 class="company-name">Patel AgroTech</h4>
-            </div>
+        <!-- Testimonial Card 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-logo">
+            <img src="images/EDUBRIDGEE.png" alt="EduBridge Academy Logo" class="logo-image">
           </div>
-
-          <!-- Testimonial Card 2 -->
-          <div class="testimonial-card">
-            <div class="testimonial-logo">
-              <img src="/assets/logos/edubridge.svg" alt="EduBridge Academy Logo" class="logo-image">
-            </div>
-            <div class="testimonial-content">
-              <p class="testimonial-text">"Their custom tech solutions helped us automate student onboarding
-                seamlessly."</p>
-              <h3 class="client-name">Sneha Rao</h3>
-              <h4 class="company-name">EduBridge Academy</h4>
-            </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">"Their custom tech solutions helped us automate student onboarding
+              seamlessly."</p>
+            <h3 class="client-name">Sneha Rao</h3>
+            <h4 class="company-name">EduBridge Academy</h4>
           </div>
+        </div>
 
-          <!-- Testimonial Card 3 -->
-          <div class="testimonial-card">
-            <div class="testimonial-logo">
-              <img src="/assets/logos/desai-logistics.svg" alt="Desai Logistics Logo" class="logo-image">
-            </div>
-            <div class="testimonial-content">
-              <p class="testimonial-text">"Professional team, timely delivery, and great support throughout the
-                project."</p>
-              <h3 class="client-name">Vikram Desai</h3>
-              <h4 class="company-name">Desai Logistics</h4>
-            </div>
+        <!-- Testimonial Card 3 -->
+        <div class="testimonial-card">
+          <div class="testimonial-logo">
+            <img src="images/DEASAII.png" alt="Desai Logistics Logo" class="logo-image">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">"Professional team, timely delivery, and great support throughout the
+              project."</p>
+            <h3 class="client-name">Vikram Desai</h3>
+            <h4 class="company-name">Desai Logistics</h4>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="section-content">
-        <h2>Contact</h2>
-        <p>Get in touch with our team</p>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Left Column: Logo & Brands -->
+      <div class="footer-left">
+        <img src="images/logoo.png" alt="Desai Logistics Logo" class="logo-image">
+        <p class="brand-title">Our Brands:</p>
+        <ul class="brand-list">
+          <li>#TechFarm Engineering</a></li>
+          <li>#TechFarm Invent</a></li>
+          <li>#AgriTech Solutions</a></li>
+          <li>#FarmAI</a></li>
+        </ul>
       </div>
-    </section>
-  </main>
 
-  <!-- Watermark -->
-  <div class="watermark">
-    <span>IN DEVELOPMENT</span>
-  </div>
+      <!-- Middle Column: Navigation Links -->
+      <div class="footer-links">
+        <ul>
+          <li>
+            <ansights< /a>
+          </li>
+          <li>#Industries</a></li>
+          <li>#Services</a></li>
+          <li>#Careers</a></li>
+          <li>#News</a></li>
+          <li>#About Us</a></li>
+          <li><a href="#">Contact Us</a></lili>#Investors</a></li>
+        </ul>
+      </div>
+
+      <!-- Right Column: Policies -->
+      <div class="footer-links">
+        <ul>
+          <li>#Accessibility</a></li>
+          <li>#Cookie Policy</a></li>
+          <li>#Privacy Notice</a></li>
+          <li>#Security Notification</a></li>
+          <li>#SpeakUp</a></li>
+          <li>#Terms of Use</a></li>
+          <li>#Fraud Alert</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p>© Tech Farm, 2025. All rights reserved.</p>
+      <div class="social-icons">
+        <img src="images/linkedinlogo.png" alt="Desai Logistics Logo" class="logo-image">
+        <img src="images/instalogoo.png" alt="Desai Logistics Logo" class="logo-image">
+        <img src="images/fblogo.png" alt="Desai Logistics Logo" class="logo-image">
+        <img src="images/xlogo.png" alt="Desai Logistics Logo" class="logo-image">
+        <img src="images/youtubelogo.png" alt="Desai Logistics Logo" class="logo-image">
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

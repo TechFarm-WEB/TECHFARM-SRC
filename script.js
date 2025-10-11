@@ -1,4 +1,3 @@
-
 class Branding {
   constructor({ logoSrc, tagline, parentElementId }) {
     this.logoSrc = logoSrc;

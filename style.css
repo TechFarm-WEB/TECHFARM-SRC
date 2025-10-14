@@ -128,7 +128,17 @@ body {
     border-radius: 2px;
     transition: all 0.3s ease;
 }
-
+<!---------------------------------------------------------------------
+/* Author           : GAURAV CHOUDHARY 
+/* Creation Date    : 22/09/2025
+/* Transaction      : NA
+/* Application Area : FRONEND UI
+/* Object ID        : GIT HUB ISSUE 
+/* BRF Application  : NA
+/* BRF DT           : NA
+/* ISSUE NO         : GIT HUB ISSUE NO
+/* Description      : NAV BAR IMPLEMENTAION
+----------------START OF HERO SECTION CSS DESIGN ---------------------------------------------------->
 /* ===== MAIN CONTENT STYLES ===== */
 .main-content {
     margin-top:10px;
@@ -225,6 +235,7 @@ body {
 .hero-cta:hover {
   background-color: #019875;
 }
+/*END OF HERO SECTION */
 
 /* ================================
    Services Overview Section Styles
@@ -349,7 +360,9 @@ body {
    End of Services Overview Styles
    ================================ */
 
-
+/* ================================
+   START of TESTIMONIAL Overview Styles
+   ================================ */
 /* Testimonials Section Container */
 .testimonials-section {
     padding: 80px 0;
@@ -523,8 +536,12 @@ body {
         padding: 20px 15px;
     }
 }
+
 /* ================================
-   About Us Section Styles
+   End of TESTIMONIAL  Overview Styles
+   ================================ */
+/* ================================
+   START OF About Us Section Styles
    ================================ */
 
 .about-us {
@@ -618,6 +635,10 @@ body {
     text-align: center;
   }
 }
+
+/* ================================
+   End of TESTIMONIAL  Overview Styles
+   ================================ */
 
 /* ================================
    Footer Styles
@@ -750,3 +771,8 @@ body {
     margin: 0 10px;
   }
 }
+/* ================================
+   End of FOOTER  Overview Styles
+   ================================ */
+
+

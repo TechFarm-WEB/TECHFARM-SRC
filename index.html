@@ -11,203 +11,202 @@
 ------------------------------------------------------------------->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>TechFarm</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&display=swap" rel="stylesheet" />
-
-</head>
-<body>
-<!---------------------------------------------------------------------
- Author           : SAKSHI SAHU 
- Creation Date    : 22/09/2025
- Transaction      : NA
- Application Area : FRONEND UI
- Object ID        : GIT HUB ISSUE 
- BRF Application  : NA
- BRF DT           : NA
- ISSUE NO         : GIT HUB ISSUE NO
- Description      : NAV BAR IMPLEMENTAION
-------------------------------------------------------------------->
-   <!----START OF NAV BAR --------------------------------------->
-  <nav class="navbar">
-    <!-- Logo Container : Holds your logo image and "Tech Farm" text-->
-    <div class="navbar-logo">
-      <img src="images/logoo.png" alt="Tech Farm Logo" class="logo-image">
-      <span class="logo-text">Tech Farm</span>
-    </div>
-
-    <!-- Navigation Menu: Creates the menu items (Home, About, Services, Contact) -->
-    <ul class="navbar-menu">
-      <li class="navbar-item">
-        <a href="#home" class="navbar-link">Home</a>
-      </li>
-      <li class="navbar-item">
-        <a href="#about" class="navbar-link">About</a>
-      </li>
-      <li class="navbar-item">
-        <a href="#services" class="navbar-link">Services</a>
-      </li>
-      <li class="navbar-item">
-        <a href="#contact" class="navbar-link">Contact</a>
-      </li>
-      <!--NAV ITEM TESTIMONIAL ADDED BY GAURAV 09.10.2025-->
-      <li class ="navbar-item">
-        <a href ="#Testimonial" class="navbar-link">Testimonials</a>
-      </li>
-      <li>
-        <a href ="login.html" class ="navbar-link">Dashboard</a>
-      </li>
-    </ul>
-
-    <!-- Mobile Menu Toggle Button (for responsive design): The hamburger menu for mobile devices -->
-    <button class="mobile-menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <!-- Main Content Area: The main content area with different sections -->
-  <main class="main-content">
-    <!-- Hero Section -->
-    <section id="home" class="section">
-      <div class="section-content">
-        <h1>Empowering Tomorrow, Today.</h1>
-       
+  <head>
+    <meta charset="UTF-8">
+    <title>TechFarm</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&display=swap"
+    rel="stylesheet" />
+  </head>
+  <body>
+    <!---------------------------------------------------------------------
+    Author           : SAKSHI SAHU 
+    Creation Date    : 22/09/2025
+    Transaction      : NA
+    Application Area : FRONEND UI
+    Object ID        : GIT HUB ISSUE 
+    BRF Application  : NA
+    BRF DT           : NA
+    ISSUE NO         : GIT HUB ISSUE NO
+    Description      : NAV BAR IMPLEMENTAION
+    ------------------------------------------------------------------->
+    <!----START OF NAV BAR --------------------------------------->
+    <nav class="navbar">
+      <!-- Logo Container : Holds your logo image and "Tech Farm" text-->
+      <div class="navbar-logo">
+        <img src="images/TechFarmFinalLogo.png" alt="Tech Farm Logo" class="logo-image">
+        <span class="logo-text">Tech Farm</span>
       </div>
-    </section>
-    <!--END OF NAVBAR -->
 
-<!---------------------------------------------------------------------
-/* Author           : GAURAV CHOUDHARY
-/* Creation Date    : 18/09/2025
-/* Transaction      : NA
-/* Application Area : FRONEND UI
-/* Object ID        : GIT HUB ISSUE 
-/* BRF Application  : NA
-/* BRF DT           : NA
-/* ISSUE NO         : GIT HUB ISSUE NO
-/* Description      : HERO SECTION IMPLEMENTATION
-------------START OF HERO SECTION -------------------------------------------------------->
-<section class="hero-video">
-  <video autoplay muted loop playsinline class="hero-bg-video">
-    <source src="videos/hero_banner.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+      <!-- Navigation Menu: Creates the menu items (Home, About, Services, Contact) -->
+      <ul class="navbar-menu">
+        <li class="navbar-item">
+          <a href="#home" class="navbar-link">Home</a>
+        </li>
+        <li class="navbar-item">
+          <a href="#about" class="navbar-link">About</a>
+        </li>
+        <li class="navbar-item">
+          <a href="#services" class="navbar-link">Services</a>
+        </li>
+        <li class="navbar-item">
+          <a href="../LoginPage/login.html" class="navbar-link">Contact</a>
+        </li>
+        <!--NAV ITEM TESTIMONIAL ADDED BY GAURAV 09.10.2025-->
+        <li class ="navbar-item">
+          <a href ="#Testimonial" class="navbar-link">Testimonials</a>
+        </li>
+        <li>
+          <a href ="login.html" class ="navbar-link">Dashboard</a>
+        </li>
+      </ul>
 
-  <div class="hero-content">
-    <h1 class="hero-title">Welcome to TechFarm</h1>
-    <p class="hero-subtitle">Innovating the Future, Today.</p>
-    <a href="hero" class="hero-cta">Get Started</a>
-  </div>
-</section>
-  
-<!---------END OF HERO SECTION ------------------------------------------------------------->
+      <!-- Mobile Menu Toggle Button (for responsive design): The hamburger menu for mobile devices -->
+      <button class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
 
- <!---------------------------------------------------------------------
-/* Author           : GAURAV CHOUDHARY
-/* Creation Date    : 08/10/2025
-/* Transaction      : NA
-/* Application Area : FRONEND UI
-/* Object ID        : GIT HUB ISSUE 
-/* BRF Application  : NA
-/* BRF DT           : NA
-/* ISSUE NO         : GIT HUB ISSUE NO
-/* Description      : ABOUT US  IMPLEMENTAION
----------------START OF ABOUT US ----------------------------------------------------->
-<section id="about" class="about-us section">
-  <div class="container">
-    <div class="about-header">
-      <!--<h2>About Us</h2>  --->
-      <p>Empowering businesses with smart, scalable, and secure technology solutions.</p>
-    </div>
-
-    <div class="about-cards">
-      <!-- Card 1 -->
-      <div class="about-card">
-        <img src="images/ABOUTUS.jpg" alt="ABOUT US  Icon" />
-        <div class="card-text">
-          <h3>Who We Are</h3>
-          <p>TECH FARM is a service-based IT company focused on delivering innovative solutions in website development, data management, and custom technology. We help individuals, businesses, and institutions thrive in the digital age.</p>
+    <!-- Main Content Area: The main content area with different sections -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section id="home" class="section">
+        <div class="section-content">
+          <h1>Empowering Tomorrow, Today</h1>
         </div>
-      </div>
+      </section>
+      <!--END OF NAVBAR -->
+      <!---------------------------------------------------------------------
+      /* Author           : GAURAV CHOUDHARY
+      /* Creation Date    : 18/09/2025
+      /* Transaction      : NA
+      /* Application Area : FRONEND UI
+      /* Object ID        : GIT HUB ISSUE 
+      /* BRF Application  : NA
+      /* BRF DT           : NA
+      /* ISSUE NO         : GIT HUB ISSUE NO
+      /* Description      : HERO SECTION IMPLEMENTATION
+      ------------START OF HERO SECTION -------------------------------------------------------->
+      <section class="hero-video">
+        <video autoplay muted loop playsinline class="hero-bg-video">
+          <source src="videos/hero_banner.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      <!-- Card 2 -->
-      <div class="about-card">
-        <img src="images/VISION2.jpg" alt="ABOUT US  Icon" />
-        <div class="card-text">
-          <h3>Our Vision</h3>
-          <p>To lead the future of technical farming and digital transformation through excellence, innovation, and integrity.</p>
+        <div class="hero-content">
+          <h1 class="hero-title">Welcome to TechFarm</h1>
+          <p class="hero-subtitle">Innovating the Future, Today.</p>
+          <a href="hero" class="hero-cta">Get Started</a>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ----------------END OF ABOUT US SECTION -------------------------------------------->
+      </section>
 
-<!---------------------------------------------------------------------
-/* Author           : GAURAV CHOUDHARY
-/* Creation Date    : 25/09/2025
-/* Transaction      : NA
-/* Application Area : FRONEND UI
-/* Object ID        : GIT HUB ISSUE 
-/* BRF Application  : NA
-/* BRF DT           : NA
-/* ISSUE NO         : GIT HUB ISSUE NO
-/* Description      : SERVICE SECTION IMPLEMENTAION
-----------------START OF SERVICE SECTION---------------------------------------------------->
-<section id="services" class="services-overview section">
-  <div class="section-content">
-    <div class="section-header">
-    <h2>Our Services</h2>
-    <p>Comprehensive technology solutions for modern businesses</p>
-  </div>
-  
-  <div class="services-grid">
-    <!-- Service Card 1 -->
-    <div class="service-card">
-      <img src="images/web-development.jpg" alt="Website Development Icon" />
-      <h3>Website Development</h3>
-      <p>We build responsive, modern websites tailored to your business needs.</p>
-    </div>
+      <!---------END OF HERO SECTION ------------------------------------------------------------->
 
-    <!-- Service Card 2 -->
-    <div class="service-card">
-      <img src="images/data_manage.png" alt="Data Management Icon" />
-      <h3>Data Management</h3>
-      <p>Organize, store, and analyze your data securely and efficiently.</p>
-    </div>
+      <!---------------------------------------------------------------------
+      /* Author           : GAURAV CHOUDHARY
+      /* Creation Date    : 08/10/2025
+      /* Transaction      : NA
+      /* Application Area : FRONEND UI
+      /* Object ID        : GIT HUB ISSUE 
+      /* BRF Application  : NA
+      /* BRF DT           : NA
+      /* ISSUE NO         : GIT HUB ISSUE NO
+      /* Description      : ABOUT US  IMPLEMENTAION
+      ---------------START OF ABOUT US ----------------------------------------------------->
+      <section id="about" class="about-us section">
+        <div class="container">
+          <div class="about-header">
+            <!--<h2>About Us</h2>  --->
+          </div>
 
-    <!-- Service Card 3 -->
-    <div class="service-card">
-      <img src="images/custom_sol.jpg" alt="Custom Technology Solutions Icon" />
-      <h3>Custom Tech Solutions</h3>
-      <p>Get tailored software solutions to streamline your operations.</p>
-    </div>
-  </div>
-</section>
+          <div class="about-cards">
+            <!-- Card 1 -->
+            <div class="about-card">
+              <img src="images/ABOUTUS.jpg" alt="ABOUT US  Icon" />
+              <div class="card-text">
+                <h3>Who We Are</h3>
+                <p>TECH FARM is a service-based IT company focused on delivering innovative solutions in website
+                development, data management, and custom technology. We help individuals, businesses, and institutions
+                thrive in the digital age.</p>
+              </div>
+            </div>
 
-<!-------------------END OF SERVICE SECTION ---------------------------------------->
-<!---------------------------------------------------------------------
-/* Author           : SAKSHI SAHU 
-/* Creation Date    : 22/09/2025
-/* Transaction      : NA
-/* Application Area : FRONEND UI
-/* Object ID        : GIT HUB ISSUE 
-/* BRF Application  : NA
-/* BRF DT           : NA
-/* ISSUE NO         : GIT HUB ISSUE NO
-/* Description      : TESTIMONIAL SECTION  IMPLEMENTAION
--------------------------------------------------------------------->
- <!-- Testimonials Section -->
-    <section id="Testimonial" class="Testimonial section">
-      <div class="testimonials-container">
-        <div class="section-header">
+            <!-- Card 2 -->
+            <div class="about-card">
+              <img src="images/VISION2.jpg" alt="ABOUT US  Icon" />
+              <div class="card-text">
+                <h3>Our Vision</h3>
+                <p>To lead the future of technical farming and digital transformation through excellence, innovation, and
+                  integrity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ----------------END OF ABOUT US SECTION -------------------------------------------->
+      <!---------------------------------------------------------------------
+      /* Author           : GAURAV CHOUDHARY
+      /* Creation Date    : 25/09/2025
+      /* Transaction      : NA
+      /* Application Area : FRONEND UI
+      /* Object ID        : GIT HUB ISSUE 
+      /* BRF Application  : NA
+      /* BRF DT           : NA
+      /* ISSUE NO         : GIT HUB ISSUE NO
+      /* Description      : SERVICE SECTION IMPLEMENTAION
+      ----------------START OF SERVICE SECTION---------------------------------------------------->
+      <section id="services" class="services-overview section">
+        <div class="section-content">
+          <div class="section-header">
+            <h2>Our Services</h2>
+            <p>Comprehensive technology solutions for modern businesses</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service Card 1 -->
+          <div class="service-card">
+            <img src="images/web-development.jpg" alt="Website Development Icon" />
+            <h3>Website Development</h3>
+            <p>We build responsive, modern websites tailored to your business needs.</p>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="service-card">
+            <img src="images/data_manage.png" alt="Data Management Icon" />
+            <h3>Data Management</h3>
+            <p>Organize, store, and analyze your data securely and efficiently.</p>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="service-card">
+            <img src="images/custom_sol.jpg" alt="Data Management Icon" />
+            <h3>Custom Tech Solutions</h3>
+            <p>Get tailored software solution to stremline your opesrations.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-------------------END OF SERVICE SECTION ---------------------------------------->
+      <!---------------------------------------------------------------------
+      /* Author           : SAKSHI SAHU 
+      /* Creation Date    : 22/09/2025
+      /* Transaction      : NA
+      /* Application Area : FRONEND UI
+      /* Object ID        : GIT HUB ISSUE 
+      /* BRF Application  : NA
+      /* BRF DT           : NA
+      /* ISSUE NO         : GIT HUB ISSUE NO
+      /* Description      : TESTIMONIAL SECTION  IMPLEMENTAION
+      -------------------------------------------------------------------->
+      <!-- Testimonials Section -->
+      <section id="Testimonial" class="Testimonial section">
+        <div class="testimonials-container">
+          <div class="section-header">
           <h2>Testimonials</h2>
         </div>
-
 
         <div class="testimonials-grid">
           <!-- Testimonial Card 1 -->
@@ -217,7 +216,7 @@
             </div>
             <div class="testimonial-content">
               <p class="testimonial-text">"Tech Farm transformed our digital presence with a sleek website and reliable
-                data tools."</p>
+              data tools."</p>
               <h3 class="client-name">Ramesh Patel</h3>
               <h4 class="company-name">Patel AgroTech</h4>
             </div>
@@ -243,84 +242,81 @@
             </div>
             <div class="testimonial-content">
               <p class="testimonial-text">"Professional team, timely delivery, and great support throughout the
-                project."</p>
+              project."</p>
               <h3 class="client-name">Vikram Desai</h3>
               <h4 class="company-name">Desai Logistics</h4>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <!---------------------END OF TESTIMONIALSECTIONS ----------------------------------------->
 
-<!---------------------END OF TESTIMONIALSECTIONS ----------------------------------------->
+      <!---------------------------------------------------------------------
+      /* Author           : GAURAV CHOUDHARY 
+      /* Creation Date    : 08/10/2025
+      /* Transaction      : NA
+      /* Application Area : FRONEND UI
+      /* Object ID        : GIT HUB ISSUE 
+      /* BRF Application  : NA
+      /* BRF DT           : NA
+      /* ISSUE NO         : GIT HUB ISSUE NO
+      /* Description      : FOOTER SECTION  IMPLEMENTAION
+      ---------------START OF FOOTER ----------------------------------------------------->
+      <section id="contact" class="footer"> 
+        <div class="footer-container">
+          <!-- Left Column: Logo & Brands -->
+          <div class="footer-left">
+            <img src="images/logoo.png" alt="Desai Logistics Logo" class="logo-image">
+            <p class="brand-title">Our Brands:</p>
+            <ul class="brand-list">
+              <li>#TechFarm Engineering</a></li>
+              <li>#TechFarm Invent</a></li>
+              <li>#AgriTech Solutions</a></li>
+              <li>#FarmAI</a></li>
+            </ul>
+          </div>
 
-<!---------------------------------------------------------------------
-/* Author           : GAURAV CHOUDHARY 
-/* Creation Date    : 08/10/2025
-/* Transaction      : NA
-/* Application Area : FRONEND UI
-/* Object ID        : GIT HUB ISSUE 
-/* BRF Application  : NA
-/* BRF DT           : NA
-/* ISSUE NO         : GIT HUB ISSUE NO
-/* Description      : FOOTER SECTION  IMPLEMENTAION
----------------START OF FOOTER ----------------------------------------------------->
-<section id="contact" class="footer"> 
-  <div class="footer-container">
-    <!-- Left Column: Logo & Brands -->
-    <div class="footer-left">
-      <img src="images/logoo.png" alt="Desai Logistics Logo" class="logo-image">
-      <p class="brand-title">Our Brands:</p>
-      <ul class="brand-list">
-        <li>#TechFarm Engineering</a></li>
-        <li>#TechFarm Invent</a></li>
-        <li>#AgriTech Solutions</a></li>
-        <li>#FarmAI</a></li>
-      </ul>
-    </div>
+          <!-- Middle Column: Navigation Links -->
+          <div class="footer-links">
+            <ul>
+              <li>#insights</a></li>
+              <li>#Industries</a></li>
+              <li>#Services</a></li>
+              <li>#Careers</a></li>
+              <li>#News</a></li>
+              <li>#About Us</a></li>
+              <li><a href="#">Contact Us</a></lili>#Investors</a></li>
+            </ul>
+          </div>
 
-    <!-- Middle Column: Navigation Links -->
-    <div class="footer-links">
-      <ul>
-        <li>#insights</a></li>
-        <li>#Industries</a></li>
-        <li>#Services</a></li>
-        <li>#Careers</a></li>
-        <li>#News</a></li>
-        <li>#About Us</a></li>
-        <li><a href="#">Contact Us</a></lili>#Investors</a></li>
-      </ul>
-    </div>
+          <!-- Right Column: Policies -->
+          <div class="footer-links">
+            <ul>
+              <li>#Accessibility</a></li>
+              <li>#Cookie Policy</a></li>
+              <li>#Privacy Notice</a></li>
+              <li>#Security Notification</a></li>
+              <li>#SpeakUp</a></li>
+              <li>#Terms of Use</a></li>
+              <li>#Fraud Alert</a></li>
+            </ul>
+          </div>
 
-    <!-- Right Column: Policies -->
-    <div class="footer-links">
-      <ul>
-        <li>#Accessibility</a></li>
-        <li>#Cookie Policy</a></li>
-        <li>#Privacy Notice</a></li>
-        <li>#Security Notification</a></li>
-        <li>#SpeakUp</a></li>
-        <li>#Terms of Use</a></li>
-        <li>#Fraud Alert</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Bottom Bar -->
-  <div class="footer-bottom">
-    <p>© Tech Farm, 2025. All rights reserved.</p>
-    <div class="social-icons">
-     <img src="images/linkedinlogo.png" alt="Desai Logistics Logo" class="logo-image">
-      <img src="images/instalogoo.png" alt="Desai Logistics Logo" class="logo-image">
-      <img src="images/fblogo.png" alt="Desai Logistics Logo" class="logo-image">
-      <img src="images/xlogo.png" alt="Desai Logistics Logo" class="logo-image">
-      <img src="images/youtubelogo.png" alt="Desai Logistics Logo" class="logo-image">
-    </div>
-  </div>
-</section>
-<!--------------------END OF FOOTER SECTION ---------------------------------------------->
-</main>
-
-     <script src="script.js"></script>
-</body>
+          <!-- Bottom Bar -->
+          <div class="footer-bottom">
+            <p>© Tech Farm, 2025. All rights reserved.</p>
+            <div class="social-icons">
+              <img src="images/linkedinlogo.png" alt="Desai Logistics Logo" class="logo-image">
+              <img src="images/instalogoo.png" alt="Desai Logistics Logo" class="logo-image">
+              <img src="images/fblogo.png" alt="Desai Logistics Logo" class="logo-image">
+              <img src="images/xlogo.png" alt="Desai Logistics Logo" class="logo-image">
+              <img src="images/youtubelogo.png" alt="Desai Logistics Logo" class="logo-image">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--------------------END OF FOOTER SECTION ---------------------------------------------->
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>

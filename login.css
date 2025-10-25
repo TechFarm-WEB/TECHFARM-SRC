@@ -1,0 +1,118 @@
+/* Page setup */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;   /* Center horizontally */
+  align-items: center;       /* Center vertically */
+}
+
+/* Login container box */
+.container {
+  width: 100%;
+  max-width: 400px;
+  background-color: white;
+  padding: 30px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #003366;
+}
+
+/* Footer info */
+.info {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.info a {
+  color: #004080;
+  text-decoration: none;
+}
+/* Logo */
+.logo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.logo img {
+  max-width: 120px;
+}
+
+/* Forgot password */
+.forgot {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.forgot a {
+  font-size: 13px;
+  color: #004080;
+  text-decoration: none;
+}
+
+/* Error message */
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+/* Logo */
+.logo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.logo img {
+  max-width: 120px;
+}
+
+/* Error message */
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}

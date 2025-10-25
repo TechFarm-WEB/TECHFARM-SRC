@@ -1,0 +1,778 @@
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.branding-logo {
+  width: 120px;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.branding-tagline {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-top: 100px;
+}
+/* RESET AND BASE STYLES : Removes default browser spacing */
+/* Remove default margins and padding from all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes padding and border included in element's total width/height */
+}
+
+/* Set up the body with our chosen font and colors */
+body {
+    font-family: 'Poppins', 'Roboto', 'Inter', sans-serif;
+    background-color: white;
+    color: black;
+    line-height: 1.6; /* Makes text more readable with proper spacing */
+}
+
+/*NAVIGATION BAR STYLES: Navbar styling - Makes the navigation bar fixed at the top with white background */
+.navbar {
+    background-color: white;
+    padding: 15px 30px; /* Top/bottom: 15px, Left/right: 30px */
+    position: fixed; /* Stays at top when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex; /* Flexbox for easy alignment: to put logo on left and menu on right */
+    justify-content: space-between; /* Logo left, menu right */
+    align-items: center; /* Vertically center items */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensures navbar stays on top of other content */
+    transition: all 0.3s ease; /* Smooth transitions for any changes */
+}
+
+/* ===== LOGO SECTION ===== */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between logo image and text */
+}
+
+.logo-image {
+    width: 60px; /* Set logo size */
+    height: 60px;
+    object-fit: contain; /* Maintains aspect ratio */
+    border-radius: 4px; /* Slightly rounded corners */
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0a0a0a; /* Tech Farm green color */
+    text-decoration: none;
+}
+
+/* ===== NAVIGATION MENU ===== */
+.navbar-menu {
+    list-style: none; /* Removes bullet points */
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between menu items */
+}
+
+.navbar-item {
+    display: inline-block;
+}
+
+.navbar-link {
+    text-decoration: none; /* Removes underline from links */
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 16px; /* Adds clickable area around text */
+    border-radius: 4px; /* Rounded corners for hover effect */
+    transition: all 0.3s ease; /* Smooth color/background changes */
+    position: relative;
+}
+
+/* Hover effects for navigation links: Hover effects - Changes color and adds background when you hover over links */
+.navbar-link:hover {
+    color: #00C853; /* Changes text color on hover */
+    background-color: rgba(0, 200, 83, 0.1); /* Light green background */
+    transform: translateY(-1px); /* Slight upward movement */
+}
+
+/* Active/clicked state */
+.navbar-link:active {
+    transform: translateY(0); /* Returns to normal position when clicked */
+}
+
+/*MOBILE MENU TOGGLE : Mobile menu - Shows hamburger menu on small screens */
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    gap: 4px;
+}
+
+/* Hamburger menu lines */
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+<!---------------------------------------------------------------------
+/* Author           : GAURAV CHOUDHARY 
+/* Creation Date    : 22/09/2025
+/* Transaction      : NA
+/* Application Area : FRONEND UI
+/* Object ID        : GIT HUB ISSUE 
+/* BRF Application  : NA
+/* BRF DT           : NA
+/* ISSUE NO         : GIT HUB ISSUE NO
+/* Description      : NAV BAR IMPLEMENTAION
+----------------START OF HERO SECTION CSS DESIGN ---------------------------------------------------->
+/* ===== MAIN CONTENT STYLES ===== */
+.main-content {
+    margin-top:10px;
+    margin-bottom: -60px; /* Adds space so content isn't hidden behind fixed navbar */
+    padding: 0;
+}
+
+.section {
+    min-height: 50vh; /* Each section takes at least half the screen height */
+    padding: 60px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-content {
+    text-align: center;
+    max-width: 0px;
+}
+
+.section-content h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #333;
+}
+
+
+
+
+.section-content p {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/*RESPONSIVE DESIGN FOR MOBILE 
+
+/*  Hero Section with Video Styles */
+
+.hero-video {
+  position: relative;
+  width: 100%;
+  margin-top: -90px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* Optional dark overlay */
+  padding: 0 , 20px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.hero-cta {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #00b894;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-cta:hover {
+  background-color: #019875;
+}
+/*END OF HERO SECTION */
+
+/* ================================
+   Services Overview Section Styles
+   ================================ */
+
+.services-overview {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.8rem;
+  color: #222;
+  margin-bottom: 10px;
+  animation: fadeInDown 0.8s ease-in-out;
+}
+
+.section-header p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #555;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Grid Layout for Service Cards */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0 10px;
+}
+
+/* Service Card Styling */
+.service-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFadeIn 0.6s ease forwards;
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.service-card img {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+  }
+}
+
+/* ================================
+   End of Services Overview Styles
+   ================================ */
+
+/* ================================
+   START of TESTIMONIAL Overview Styles
+   ================================ */
+/* Testimonials Section Container */
+.testimonials-section {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Testimonials Grid Layout */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Individual Testimonial Card */
+.testimonial-card {
+    background: white;
+    border-radius: 50x  px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 35px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect for cards */
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Logo styling */
+.testimonial-logo {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.testimonial-logo .logo-image {
+    width: 100px;
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
+    
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-logo .logo-image {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+}
+
+/* Testimonial content */
+.testimonial-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Quote marks styling */
+.testimonial-text::before {
+    content: '"';
+    font-size: 60px;
+    color: #4CAF50;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+}
+
+.testimonial-text::after {
+    content: '"';
+    font-size: 60px;
+    color: #4CAF50;
+    position: absolute;
+    bottom: -40px;
+    right: -10px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+}
+
+/* Client name styling */
+.client-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Company name styling */
+.company-name {
+    font-size: 14px;
+    color: #4CAF50;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ===== RESPONSIVE DESIGN FOR TESTIMONIALS ===== */
+@media (max-width: 768px) {
+    .testimonials-section {
+        padding: 60px 0;
+    }
+
+    .testimonials-container {
+        padding: 0 20px;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .section-header p {
+        font-size: 1rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .testimonial-card {
+        padding: 25px 20px;
+    }
+
+    .testimonial-text {
+        font-size: 14px;
+    }
+
+    .client-name {
+        font-size: 16px;
+    }
+
+    .company-name {
+        font-size: 13px;
+    }
+
+    .testimonial-logo .logo-image {
+        width: 50px;
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+        padding: 20px 15px;
+    }
+}
+
+/* ================================
+   End of TESTIMONIAL  Overview Styles
+   ================================ */
+/* ================================
+   START OF About Us Section Styles
+   ================================ */
+
+.about-us {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f9f9f9, #ffffff);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about-header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+  animation: fadeInDown 0.8s ease-in-out;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: #666;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Cards Layout */
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.about-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.about-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-text {
+  padding: 20px;
+  text-align: left;
+}
+
+.card-text h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.card-text p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-text {
+    text-align: center;
+  }
+}
+
+/* ================================
+   End of TESTIMONIAL  Overview Styles
+   ================================ */
+
+/* ================================
+   Footer Styles
+   ================================ */
+
+.footer {
+  background-color: #f8f8f8;
+  color: #333;
+  font-family: 'Open Sans', sans-serif;
+  padding: 50px 20px 20px;
+  border-top: 1px solid #ddd;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-left {
+  flex: 1 1 250px;
+}
+
+.footer-logo {
+  width: 150px;
+  margin-bottom: 15px;
+}
+
+.brand-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.brand-list {
+  list-style: none;
+  padding: 0;
+}
+
+.brand-list li {
+  margin-bottom: 8px;
+}
+
+.brand-list a {
+  text-decoration: none;
+  color: #0077b6;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.brand-list a:hover {
+  color: #005f8d;
+}
+
+.footer-links {
+  flex: 1 1 200px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #0077b6;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  border-top: 1px solid #ddd;
+  margin-top: 30px;
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: #666;
+}
+
+.social-icons a {
+  margin-left: 15px;
+  display: inline-block;
+}
+
+.social-icons img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    margin-top: 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .social-icons a {
+    margin: 0 10px;
+  }
+}
+/* ================================
+   End of FOOTER  Overview Styles
+   ================================ */
+
+

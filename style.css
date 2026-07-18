@@ -1,5 +1,4 @@
 
-
 body {
   margin: 0;
   padding: 0;
@@ -59,13 +58,13 @@ body {
     align-items: center;
     gap: 12px; /* Space between logo image and text */
 }
+
 .logo-image {
     width: 60px; /* Set logo size */
     height: 60px;
-    object-fit:inherit;/* Maintains aspect ratio */
-    border-radius: 2px; /* Slightly rounded corners */
+    object-fit: contain; /* Maintains aspect ratio */
+    border-radius: 4px; /* Slightly rounded corners */
 }
-
 
 .logo-text {
     font-size: 24px;
@@ -128,21 +127,10 @@ body {
     border-radius: 2px;
     transition: all 0.3s ease;
 }
-<!---------------------------------------------------------------------
-/* Author           : GAURAV CHOUDHARY 
-/* Creation Date    : 22/09/2025
-/* Transaction      : NA
-/* Application Area : FRONEND UI
-/* Object ID        : GIT HUB ISSUE 
-/* BRF Application  : NA
-/* BRF DT           : NA
-/* ISSUE NO         : GIT HUB ISSUE NO
-/* Description      : NAV BAR IMPLEMENTAION
-----------------START OF HERO SECTION CSS DESIGN ---------------------------------------------------->
+
 /* ===== MAIN CONTENT STYLES ===== */
 .main-content {
-    margin-top:10px;
-    margin-bottom: -60px; /* Adds space so content isn't hidden behind fixed navbar */
+    margin-top: 80px; /* Adds space so content isn't hidden behind fixed navbar */
     padding: 0;
 }
 
@@ -156,18 +144,22 @@ body {
 
 .section-content {
     text-align: center;
-    max-width: 0px;
+    max-width: 800px;
 }
 
 .section-content h1 {
     font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     color: #333;
 }
 
-
-
+.section-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
 
 .section-content p {
     font-size: 1.2rem;
@@ -182,7 +174,6 @@ body {
 .hero-video {
   position: relative;
   width: 100%;
-  margin-top: -90px;
   height: 100vh;
   overflow: hidden;
 }
@@ -204,11 +195,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   text-align: center;
   color: white;
   background-color: rgba(0, 0, 0, 0.4); /* Optional dark overlay */
-  padding: 0 , 20px;
+  padding: 40px;
 }
 
 .hero-title {
@@ -235,7 +226,6 @@ body {
 .hero-cta:hover {
   background-color: #019875;
 }
-/*END OF HERO SECTION */
 
 /* ================================
    Services Overview Section Styles
@@ -299,8 +289,8 @@ body {
 }
 
 .service-card img {
-  width: 300px;
-  height: 200px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   margin-bottom: 20px;
 }
@@ -360,25 +350,11 @@ body {
    End of Services Overview Styles
    ================================ */
 
-/* ================================
-   START of TESTIMONIAL Overview Styles
-   ================================ */
-/* Testimonials Section Container */
-.testimonials-section {
-    padding: 30px 0;
-    background-color: #f9f9f9;
-}
-
-.testimonials-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 10px;
-}
 
 /* Testimonials Grid Layout */
 .testimonials-grid {
-    display:flex;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
     margin-top: 40px;
 }
@@ -386,9 +362,9 @@ body {
 /* Individual Testimonial Card */
 .testimonial-card {
     background: white;
-    border-radius: 5px;
+    border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    padding: 35px 15px;
+    padding: 35px 25px;
     text-align: center;
     transition: all 0.3s ease;
     position: relative;
@@ -407,14 +383,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 80px; /* Fixed height for consistent layout */
 }
 
 .testimonial-logo .logo-image {
-    width: 100px;
+    width: 60px;
     height: auto;
-    max-height: 100px;
+    max-height: 60px;
     object-fit: contain;
+    filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease;
 }
 
@@ -443,7 +420,7 @@ body {
 .testimonial-text::before {
     content: '"';
     font-size: 60px;
-    color: #040504;
+    color: #4CAF50;
     position: absolute;
     top: -20px;
     left: -10px;
@@ -473,7 +450,7 @@ body {
 /* Company name styling */
 .company-name {
     font-size: 14px;
-    color: #0a0a0a;
+    color: #4CAF50;
     font-weight: 500;
     font-style: normal;
     margin: 0;
@@ -481,45 +458,123 @@ body {
     letter-spacing: 0.5px;
 }
 
+
+/*RESPONSIVE DESIGN FOR MOBILE 
+
+Adapts to mobile screens with*/
+@media (max-width: 768px) {
+    /* Adjust navbar for mobile */
+    .navbar {
+        padding: 10px 20px;
+    }
+    
+    /* Hide desktop menu on mobile */
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Show menu when active */
+    .navbar-menu.active {
+        display: flex;
+    }
+    
+    /* Style mobile menu items */
+    .navbar-menu.active .navbar-item {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar-menu.active .navbar-link {
+        display: block;
+        padding: 15px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Responsive tweaks: Service section */
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+    
+    /* Show hamburger menu on mobile */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    /* Smaller logo on mobile */
+    .logo-image {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .section-content p {
+        font-size: 1rem;
+    }
+}
 /* ===== RESPONSIVE DESIGN FOR TESTIMONIALS ===== */
 @media (max-width: 768px) {
     .testimonials-section {
         padding: 60px 0;
     }
-
+    
     .testimonials-container {
         padding: 0 20px;
     }
-
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
     .section-header h2 {
         font-size: 2rem;
     }
-
+    
     .section-header p {
         font-size: 1rem;
     }
-
+    
     .testimonials-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-
+    
     .testimonial-card {
         padding: 25px 20px;
     }
-
+    
     .testimonial-text {
         font-size: 14px;
     }
-
+    
     .client-name {
         font-size: 16px;
     }
-
+    
     .company-name {
         font-size: 13px;
     }
-
+    
     .testimonial-logo .logo-image {
         width: 50px;
         max-height: 50px;
@@ -530,17 +585,25 @@ body {
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
-
+    
     .testimonial-card {
         padding: 20px 15px;
     }
 }
+/* ===== ANIMATION FOR MOBILE MENU TOGGLE ===== */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
 
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
 /* ================================
-   End of TESTIMONIAL  Overview Styles
-   ================================ */
-/* ================================
-   START OF About Us Section Styles
+   About Us Section Styles
    ================================ */
 
 .about-us {
@@ -634,10 +697,6 @@ body {
     text-align: center;
   }
 }
-
-/* ================================
-   End of TESTIMONIAL  Overview Styles
-   ================================ */
 
 /* ================================
    Footer Styles
@@ -770,8 +829,3 @@ body {
     margin: 0 10px;
   }
 }
-/* ================================
-   End of FOOTER  Overview Styles
-   ================================ */
-
-

@@ -1,15 +1,16 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 import psycopg2
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Tech Farm Backend Running"
+    return send_from_directory(".", "index.html")
+
 
 @app.route("/signup", methods=["POST"])
 def signup():
- 
+
     name = request.form["name"]
     mobile = request.form["mobile"]
     email = request.form["email"]
@@ -30,10 +31,10 @@ def signup():
 
         cur.execute("""
             INSERT INTO users
-            (full_name,mobile_number,email,company_name,password)
-            VALUES (%s,%s,%s,%s,%s)
+            (full_name, mobile_number, email, company_name, password)
+            VALUES (%s, %s, %s, %s, %s)
         """,
-        (name,mobile,email,company,password))
+        (name, mobile, email, company, password))
 
         conn.commit()
 
@@ -44,6 +45,7 @@ def signup():
 
     except Exception as e:
         return str(e)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

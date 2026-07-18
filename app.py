@@ -30,8 +30,17 @@ def images(filename):
 def videos(filename):
     return send_from_directory('videos', filename)
 
-@app.route("/signup", methods=["POST"])
-def signup():
+@app.route("/enquire")
+def enquire():
+    return send_from_directory(".", "login.html")
+
+@app.route("/login")
+def login():
+    return send_from_directory(".", "login.html")
+
+@app.route("/signup-page")
+def signup_page():
+    return send_from_directory(".", "signup.html")
 
     name = request.form["name"]
     mobile = request.form["mobile"]

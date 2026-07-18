@@ -9,15 +9,17 @@ body {
   align-items: center;       /* Center vertically */
 }
 
-/* Login container box */
+/* Login container box  CHANGED ON 18.07.2026 */
 .container {
   width: 100%;
-  max-width: 400px;
+  max-width: 650px;
   background-color: white;
-  padding: 30px 20px;
+  padding: 30px 25px;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 /* Heading */
@@ -77,9 +79,7 @@ button:hover {
   text-align: center;
   margin-bottom: 15px;
 }
-.logo img {
-  max-width: 120px;
-}
+.logo img {  max-width: 140px;  height: auto;}
 
 /* Forgot password */
 .forgot {
@@ -115,4 +115,39 @@ button:hover {
   font-size: 14px;
   text-align: center;
   margin-top: 10px;
+}
+/* ADDED BY GAURAV ON 18.07.2026 FOR SIGN UP PAGE */
+input:focus { 
+   outline: none;  
+   border-color: #004080; 
+    box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
+  }
+
+  .signup-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: 1 / span 2;
+}
+
+.full-width button {
+  width: 100%;
+} 
+
+@media (max-width: 768px) {
+  .signup-form {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
 }

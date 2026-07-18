@@ -20,11 +20,13 @@ def login_css():
 def script():
     return send_from_directory('.', 'script.js')
 
+
 @app.route('/images/<path:filename>')
 def images(filename):
     return send_from_directory('images', filename)
 
-    @app.route('/videos/<path:filename>')
+
+@app.route('/videos/<path:filename>')
 def videos(filename):
     return send_from_directory('videos', filename)
 

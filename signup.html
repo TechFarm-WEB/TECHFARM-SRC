@@ -6,34 +6,60 @@
   <title>Sign Up - IT Services</title>
   <link rel="stylesheet" href="login.css" />
 </head>
+<!----CHANGED ON 18.07.2026 BY GAURAV CHOUDHARY---->
 <body>
 
   <div class="container">
 
     <div class="logo">
-      <img src="images/logo.png" alt="Company Logo">
+      <img src="images/TechFarmFinalLogo.png" alt="Tech Farm Logo" class="logo-image">
     </div>
 
-    <h2>Create News Account</h2>
+    <h2>Create Your Tech Farm Account</h2>
+<h2>Create Your Tech Farm Account</h2>
 
-    <form id="signupForm">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" required>
+<form
+    id="signupForm"
+    class="signup-form"
+    action="http://127.0.0.1:5000/signup"
+    method="POST">
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
+    <div class="form-group">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required>
+</div>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" required>
+    <div class="form-group">
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" name="mobile" required>
+    </div>
 
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" id="confirmPassword" required>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
 
-      <button type="submit">Sign Up</button>
+    <div class="form-group">
+        <label for="company">Company Name:</label>
+        <input type="text" id="company" name="company">
+    </div>
 
-      <p id="error" class="error"></p>
-    </form>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
 
+    <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+    </div>
+
+    <div class="full-width">
+        <button type="submit">Sign Up</button>
+        <p id="error" class="error"></p>
+    </div>
+
+</form>
     <p class="info">Already have an account? <a href="login.html">Login</a></p>
   </div>
 

@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - IT Services</title>
+  <title>Login - Tech Farm</title>
   <link rel="stylesheet" href="login.css" />
 </head>
-<body>
 
+<body>
+<!----CHANGED ON 18.07.2026 BY GAURAV CHOUDHARY---->
   <div class="container">
 
     <div class="logo">
-      <img src="images/logo.png" alt="Company Logo">
+      <img src="images/TechFarmFinalLogo.png" alt="Tech Farm Logo" class="logo-image">
     </div>
 
-    <h2>IT Services Login</h2>
-    
+    <h2>Login to Tech Farm</h2>
+
     <form id="loginForm">
+
       <label for="email">Email:</label>
       <input type="email" id="email" required>
 
@@ -24,34 +26,39 @@
       <input type="password" id="password" required>
 
       <div class="forgot">
-        <a href="#">Forgot Password?</a>
+        
       </div>
 
       <button type="submit">Login</button>
 
       <p id="error" class="error"></p>
+
     </form>
 
-    <p class="info">Don’t have an account? <a href="signup.html">Sign Up</a></p>
+    <p class="info">
+      Don't have an account?
+      <a href="signup.html">Sign Up</a>
+    </p>
+
   </div>
-<script>
-  const form = document.getElementById("loginForm");
-  const errorMsg = document.getElementById("error");
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+  <script>
+    const form = document.getElementById("loginForm");
+    const errorMsg = document.getElementById("error");
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    // Simulated login check (replace this with actual backend fetch)
-    if (email === "test@example.com" && password === "123456") {
-      window.location.href = "dashboard.html"; // redirect on success
-    } else {
-      errorMsg.textContent = "Invalid email or password.";
-    }
-  });
-</script>
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (email === "test@example.com" && password === "123456") {
+        window.location.href = "dashboard.html";
+      } else {
+        errorMsg.textContent = "Invalid email or password.";
+      }
+    });
+  </script>
 
 </body>
 </html>

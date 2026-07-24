@@ -40,7 +40,8 @@
     </div>
 
     <!-- Navigation Menu: Creates the menu items (Home, About, Services, Contact) -->
-    <ul class="navbar-menu">
+    <ul class="navbar-menu" id="navbarMenu">
+
       <li class="navbar-item">
         <a href="#home" class="navbar-link">Home</a>
       </li>
@@ -66,7 +67,7 @@
     </ul>
 
     <!-- Mobile Menu Toggle Button (for responsive design): The hamburger menu for mobile devices -->
-    <button class="mobile-menu-toggle">
+    <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle menu">
       <span></span>
       <span></span>
       <span></span>
@@ -160,37 +161,45 @@
       /* BRF DT           : NA
       /* ISSUE NO         : GIT HUB ISSUE NO
       /* Description      : SERVICE SECTION IMPLEMENTAION
+      <!---------------------------------------------------------------------
+      /* Author           : Sakshi Sahu
+      /* Creation Date    : 23/07/2026
+      /* Transaction      : NA
+      /* Application Area : FRONEND UI
+      /* Object ID        : GIT HUB ISSUE 
+      /* BRF Application  : NA
+      /* BRF DT           : NA
+      /* ISSUE NO         : GIT HUB ISSUE NO:Defect 0001 -- CSS stylesheet layout and proportion issues (INR 50)
+      /* Description      : Service and Testimonial SECTION  Modification
       ----------------START OF SERVICE SECTION---------------------------------------------------->
     <section id="services" class="services-overview section">
       <div class="section-content">
         <div class="section-header">
           <h2>Our Services</h2>
-          <p>Comprehensive technology solutions for modern businesses</p>
-        </div>
-      </div>
-
-      <div class="services-grid">
-        <!-- Service Card 1 -->
-        <div class="service-card">
-          <img src="images/web-development.jpg" alt="Website Development Icon" />
-          <h3>Website Development</h3>
-          <p>We build responsive, modern websites tailored to your business needs.</p>
         </div>
 
-        <!-- Service Card 2 -->
-        <div class="service-card">
-          <img src="images/data_manage.png" alt="Data Management Icon" />
-          <h3>Data Management</h3>
-          <p>Organize, store, and analyze your data securely and efficiently.</p>
-        </div>
+        <div class="services-grid">
+          <!-- Service Card 1 -->
+          <div class="service-card">
+            <img src="images/web-development.jpg" alt="Website Development Icon" />
+            <h3>Website Development</h3>
+            <p>We build responsive, modern websites tailored to your business needs.</p>
+          </div>
 
-        <!-- Service Card 3 -->
-        <div class="service-card">
-          <img src="images/custom_sol.jpg" alt="Data Management Icon" />
-          <h3>Custom Tech Solutions</h3>
-          <p>Get tailored software solution to stremline your opesrations.</p>
+          <!-- Service Card 2 -->
+          <div class="service-card">
+            <img src="images/data_manage.png" alt="Data Management Icon" />
+            <h3>Data Management</h3>
+            <p>Organize, store, and analyze your data securely and efficiently.</p>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="service-card">
+            <img src="images/custom_sol.jpg" alt="Data Management Icon" />
+            <h3>Custom Tech Solutions</h3>
+            <p>Get tailored software solution to stremline your opesrations.</p>
+          </div>
         </div>
-      </div>
     </section>
 
     <!-------------------END OF SERVICE SECTION ---------------------------------------->
@@ -211,7 +220,6 @@
         <div class="section-header">
           <h2>Testimonials</h2>
         </div>
-
         <div class="testimonials-grid">
           <!-- Testimonial Card 1 -->
           <div class="testimonial-card">
@@ -265,18 +273,18 @@
       /* BRF DT           : NA
       /* ISSUE NO         : GIT HUB ISSUE NO
       /* Description      : FOOTER SECTION  IMPLEMENTAION
-      ---------------START OF FOOTER ----------------------------------------------------->
+
     <!---------------------------------------------------------------------
       /* Author           : Sakshi Sahu
-      /* Creation Date    : 08/10/2025
+      /* Creation Date    : 23/07/2026
       /* Transaction      : NA
       /* Application Area : FRONEND UI
       /* Object ID        : GIT HUB ISSUE 
       /* BRF Application  : NA
       /* BRF DT           : NA
-      /* ISSUE NO         : GIT HUB ISSUE NO
+      /* ISSUE NO         : GIT HUB ISSUE NO:DEFECT 0002 -- Footer restructuring, broken links, and social media mapping (INR 100 )
       /* Description      : FOOTER SECTION  Modification
-      ---------------START OF FOOTER ----------------------------------------------------->
+    ---------------START OF FOOTER ----------------------------------------------------->
     <section id="contact" class="footer">
       <div class="footer-container">
         <!-- Left Column: Logo & Brands -->
@@ -296,17 +304,8 @@
           <p class="brand-title">Contact Us:</p>
           <ul class="contact-list">
             <li class="contact-item">
-              <span class="contact-label">Founder:</span> Gaurav Choudhary
-            </li>
-            <span class="contact-label">Mobile:</span>
-            <a href="tel:+917415661465">+91 9653246475</a>
-
-
-            <li class="contact-item">
-              <span class="contact-label">Co-Founder:</span> Sakshi Sahu
-            </li>
-            <li class="contact-item">
-              <span class="contact-label">Mobile:</span>
+              <span class="contact-label">Call and Whatsapp:</span>
+              <a href="tel:+919653246475">+91 9653246475</a>
               <a href="tel:+917415661465">+91 7415661465</a>
             </li>
             <li class="contact-item">
@@ -314,13 +313,10 @@
               <a href="mailto:contact@techfarm.com">techfarmsocial7@gmail.com</a>
             </li>
             <li class="contact-item">
-              <span class="contact-label">Address:</span> Indore, Madhya Pradesh, India
-            </li>
-            <li class="contact-item">
-              <span class="contact-label">Address:</span> Mumbai, Maharastra, India
-            </li>
-            <li class="contact-item">
-              <span class="contact-label">Address:</span> khurai, Madhya Pradesh, India
+              <span class="contact-label">Address:</span>
+              <ul>Indore, Madhya Pradesh, India</ul>
+              <ul>Mumbai, Maharastra, India</ul>
+              <ul>khurai, Madhya Pradesh, India</ul>
             </li>
           </ul>
         </div>
@@ -338,22 +334,29 @@
           </ul>
         </div>
 
+
         <!-- Bottom Bar -->
         <div class="footer-bottom">
           <p>© Tech Farm, 2025. All rights reserved.</p>
           <div class="social-icons">
-            <img src="images/linkedinlogo.png" alt="LinkedIn" class="logo-image">
-            <img src="images/instalogoo.png" alt="Instagram" class="logo-image">
-            <img src="images/fblogo.png" alt="Facebook" class="logo-image">
-            <img src="images/xlogo.png" alt="X" class="logo-image">
-            <img src="images/youtubelogo.png" alt="YouTube" class="logo-image">
+            <a href="https://www.linkedin.com/in/techfarm-social-59200438a/" target="_blank" rel="noopener noreferrer">
+              <img src="images/linkedinlogo.png" alt="LinkedIn" class="logo-image"></a>
+            <a href="https://www.instagram.com/techfarm4/?hl=en" target="_blank" rel="noopener noreferrer">
+              <img src="images/instalogoo.png" alt="Instagram" class="logo-image"></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+              <img src="images/fblogo.png" alt="Facebook" class="logo-image"></a>
+            <a href="https://x.com/TechFarm04" target="_blank" rel="noopener noreferrer">
+              <img src="images/xlogo.png" alt="X" class="logo-image"></a>
+            <a href="https://www.youtube.com/@TechFarm-u6d" target="_blank" rel="noopener noreferrer">
+              <img src="images/youtubelogo.png" alt="YouTube" class="logo-image"></>
           </div>
         </div>
-      </div>
     </section>
     <!--------------------END OF FOOTER SECTION ---------------------------------------------->
   </main>
+
   <script src="script.js"></script>
+
 </body>
 
 </html>

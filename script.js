@@ -1,33 +1,13 @@
-class Branding {
-  constructor({ logoSrc, tagline, parentElementId }) {
-    this.logoSrc = logoSrc;
-    this.tagline = tagline;
-    this.parentElement = document.getElementById(parentElementId);
-  }
 
-  createLogoElement() {
-    const img = document.createElement('img');
-    img.src = this.logoSrc;
-    img.alt = "Company Logo";
-    img.className = 'branding-logo';
-    return img;
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.navbar-menu');
 
-  createTaglineElement() {
-    const taglineEl = document.createElement('div');
-    taglineEl.className = 'branding-tagline';
-    taglineEl.textContent = this.tagline;
-    return taglineEl;
-  }
-
-  render() {
-    const logo = this.createLogoElement();
-    const tagline = this.createTaglineElement();
-
-    this.parentElement.appendChild(logo);
-    this.parentElement.appendChild(tagline);
-  }
-}
+    toggleBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      toggleBtn.classList.toggle('active');
+    });
+  });
 
 class Branding {
   constructor({ logoSrc, tagline, parentElementId }) {
@@ -35,6 +15,7 @@ class Branding {
     this.tagline = tagline;
     this.parentElement = document.getElementById(parentElementId);
   }
+  
 
   createLogoElement() {
     const img = document.createElement('img');

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Location</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #1f2937;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .box {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    input[type="file"] {
+      width: 100%;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background: #2563eb;
+      color: white;
+      margin-top: 16px;
+    }
+
+    button:hover {
+      background: #1e4fca;
+    }
+
+    button.secondary {
+      background: #6b7280;
+    }
+
+    button.secondary:hover {
+      background: #52596633;
+      background: #4b5563;
+    }
+
+    #locationStatus {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .error {
+      color: #dc2626;
+    }
+
+    .success {
+      color: #16a34a;
+    }
+
+    #outputBox {
+      display: none;
+    }
+
+    #outputBox h3 {
+      margin-top: 0;
+    }
+
+    .detail-row {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .detail-row strong {
+      display: inline-block;
+      min-width: 90px;
+    }
+
+    .user-photo {
+      max-width: 100%;
+      max-height: 250px;
+      border-radius: 8px;
+      margin-top: 6px;
+      display: block;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar h2 {
+      margin: 0;
+    }
+
+    #adminBtn {
+      margin-top: 0;
+      background: #111827;
+      font-size: 13px;
+      padding: 8px 14px;
+    }
+
+    #adminBtn:hover {
+      background: #000;
+    }
+
+    .user-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .user-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .empty-msg {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .close-admin {
+      background: #9ca3af;
+    }
+
+    .close-admin:hover {
+      background: #6b7280;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <h2>User Details Form</h2>
+    <button type="button" id="adminBtn" onclick="toggleAdmin()">Admin Page</button>
+  </div>
+
+  <!-- BOX 1: FORM -->
+  <div class="box" id="formBox">
+    <label for="userName">Name</label>
+    <input type="text" id="userName" placeholder="Enter your name">
+
+    <label for="userNumber">Phone Number</label>
+    <input type="tel" id="userNumber" placeholder="Enter your phone number">
+
+    <label for="userPhoto">Upload Photo</label>
+    <input type="file" id="userPhoto" accept="image/*">
+
+    <label>Location</label>
+    <button type="button" class="secondary" onclick="getLocation()">Fetch Location</button>
+    <div id="locationStatus"></div>
+
+    <button type="button" class="submit-btn" onclick="submitForm()">Submit</button>
+  </div>
+
+  <!-- BOX 2: ADMIN PANEL (shows all submitted users) -->
+  <div class="box" id="outputBox">
+    <h3>All Submitted Users</h3>
+    <div id="usersList"></div>
+    <button type="button" class="close-admin" onclick="toggleAdmin()">Close</button>
+  </div>
+
+  <script>
+    // Data is saved in this browser's localStorage under this key
+    const STORAGE_KEY = "bill_submissions";
+
+    // Holds the fetched location for the form currently being filled
+    let fetchedLocation = null;
+
+    function getStoredUsers() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveStoredUsers(users) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+    }
+    async function getAddressFromCoords(lat, lon) {
+      const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+      const response = await fetch(url, {
+        headers: {
+          "Accept-Language": "en" // change to get address in a different language
+        }
+      });
+      if (!response.ok) throw new Error("Failed to fetch address");
+      const data = await response.json();
+      return data.display_name || "Address not found";
+    }
+
+    function getLocation() {
+      const statusDiv = document.getElementById("locationStatus");
+      statusDiv.innerHTML = "Fetching location...";
+
+      if (!navigator.geolocation) {
+        statusDiv.innerHTML = "<span class='error'>Geolocation is not supported by your browser.</span>";
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          statusDiv.innerHTML = "<span class='success'>Location captured.</span> Looking up address...";
+
+          let address = "Address not found";
+          try {
+            address = await getAddressFromCoords(lat, lon);
+          } catch (err) {
+            address = "Could not fetch address.";
+          }
+
+          fetchedLocation = { lat, lon, address };
+          statusDiv.innerHTML = `<span class="success">Location captured:</span> ${address}`;
+        },
+        (error) => {
+          let message = "";
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              message = "You denied location access.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              message = "Location information is unavailable.";
+              break;
+            case error.TIMEOUT:
+              message = "The request to get location timed out.";
+              break;
+            default:
+              message = "An unknown error occurred.";
+          }
+          statusDiv.innerHTML = `<span class="error">${message}</span>`;
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
+    }
+
+    function submitForm() {
+      const name = document.getElementById("userName").value.trim();
+      const number = document.getElementById("userNumber").value.trim();
+      const photoInput = document.getElementById("userPhoto");
+
+      if (!name || !number) {
+        alert("Please fill in both Name and Number.");
+        return;
+      }
+      if (!fetchedLocation) {
+        alert("Please fetch your location before submitting.");
+        return;
+      }
+
+      const finalizeUser = (photoDataUrl) => {
+        const submitBtn = document.querySelector(".submit-btn");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+
+        try {
+          const users = getStoredUsers();
+          users.unshift({
+            name,
+            number,
+            photo: photoDataUrl || "",
+            lat: fetchedLocation.lat,
+            lon: fetchedLocation.lon,
+            address: fetchedLocation.address,
+            timestamp: new Date().toLocaleString()
+          });
+          saveStoredUsers(users);
+
+          // Reset the form for the next entry
+          document.getElementById("userName").value = "";
+          document.getElementById("userNumber").value = "";
+          document.getElementById("userPhoto").value = "";
+          document.getElementById("locationStatus").innerHTML = "";
+          fetchedLocation = null;
+
+          alert("Submitted! You can view all entries from the Admin Page.");
+        } catch (err) {
+          console.error(err);
+          alert("Something went wrong while saving. Your browser's storage might be full (large photos take up a lot of space).");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit";
+        }
+      };
+
+
+      if (photoInput.files && photoInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => finalizeUser(e.target.result);
+        reader.readAsDataURL(photoInput.files[0]);
+      } else {
+        finalizeUser(null);
+      }
+    }
+
+    function renderUsers() {
+      const listDiv = document.getElementById("usersList");
+      const users = getStoredUsers();
+
+      if (users.length === 0) {
+        listDiv.innerHTML = "<p class='empty-msg'>No users submitted yet.</p>";
+        return;
+      }
+
+      listDiv.innerHTML = users.map((user, index) => `
+        <div class="user-card">
+          <div class="detail-row"><strong>#</strong> ${index + 1}</div>
+          <div class="detail-row"><strong>Name:</strong> ${user.name}</div>
+          <div class="detail-row"><strong>Number:</strong> ${user.number}</div>
+          <div class="detail-row">
+            <strong>Photo:</strong>
+            ${user.photo ? `<img class="user-photo" src="${user.photo}" alt="User photo">` : "No photo uploaded"}
+          </div>
+          <div class="detail-row"><strong>Coordinates:</strong> ${user.lat}, ${user.lon}</div>
+          <div class="detail-row"><strong>Address:</strong> ${user.address}</div>
+          <div class="detail-row"><strong>Submitted:</strong> ${user.timestamp}</div>
+        </div>
+      `).join("");
+    }
+
+    function toggleAdmin() {
+      const outputBox = document.getElementById("outputBox");
+      const isHidden = outputBox.style.display === "none" || outputBox.style.display === "";
+
+      if (isHidden) {
+        renderUsers();
+        outputBox.style.display = "block";
+        outputBox.scrollIntoView({ behavior: "smooth" });
+      } else {
+        outputBox.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -29,6 +29,9 @@ def images(filename):
 def login_page():
     return send_from_directory('.', 'login.html')
 
+@app.route('/locationTracking.html')
+def location_tracking():
+    return send_from_directory('.', 'locationTracking.html')
 
 @app.route('/videos/<path:filename>')
 def videos(filename):

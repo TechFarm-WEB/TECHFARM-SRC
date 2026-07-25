@@ -25,6 +25,10 @@ def script():
 def images(filename):
     return send_from_directory('images', filename)
 
+@app.route('/login.html')
+def login_page():
+    return send_from_directory('.', 'login.html')
+
 
 @app.route('/videos/<path:filename>')
 def videos(filename):

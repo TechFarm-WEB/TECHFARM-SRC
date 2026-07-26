@@ -190,30 +190,18 @@
   </div>
 
   <!-- BOX 2: ADMIN PANEL (shows all submitted users) -->
-  <div class="box" id="outputBox">
-    <h3>All Submitted Users</h3>
-    <div id="usersList"></div>
-    <button type="button" class="close-admin" onclick="toggleAdmin()">Close</button>
-  </div>
+  
 
   <script>
     // Data is saved in this browser's localStorage under this key
-    const STORAGE_KEY = "bill_submissions";
+    
 
     // Holds the fetched location for the form currently being filled
     let fetchedLocation = null;
 
-    function getStoredUsers() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch (err) {
-        return [];
-      }
-    }
+    
 
-    function saveStoredUsers(users) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
-    }
+ 
     async function getAddressFromCoords(lat, lon) {
       const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
       const response = await fetch(url, {
@@ -225,6 +213,7 @@
       const data = await response.json();
       return data.display_name || "Address not found";
     }
+
 
     function getLocation() {
       const statusDiv = document.getElementById("locationStatus");
@@ -296,35 +285,71 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Submitting...";
 
-        try {
-          const users = getStoredUsers();
-          users.unshift({
-            name,
-            number,
-            photo: photoDataUrl || "",
-            lat: fetchedLocation.lat,
-            lon: fetchedLocation.lon,
-            address: fetchedLocation.address,
-            timestamp: new Date().toLocaleString()
-          });
-          saveStoredUsers(users);
+   fetch("/save-location", {
 
-          // Reset the form for the next entry
-          document.getElementById("userName").value = "";
-          document.getElementById("userNumber").value = "";
-          document.getElementById("userPhoto").value = "";
-          document.getElementById("locationStatus").innerHTML = "";
-          fetchedLocation = null;
+    method: "POST",
 
-          alert("Submitted! You can view all entries from the Admin Page.");
-        } catch (err) {
-          console.error(err);
-          alert("Something went wrong while saving. Your browser's storage might be full (large photos take up a lot of space).");
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Submit";
-        }
-      };
+    headers: {
+        "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({
+
+        name: name,
+
+        phone: number,
+
+        photo: photoDataUrl || "",
+
+        lat: fetchedLocation.lat,
+
+        lon: fetchedLocation.lon,
+
+        address: fetchedLocation.address
+
+    })
+
+})
+
+.then(response => response.json())
+
+.then(data => {
+
+    if (data.success) {
+
+        document.getElementById("userName").value = "";
+        document.getElementById("userNumber").value = "";
+        document.getElementById("userPhoto").value = "";
+        document.getElementById("locationStatus").innerHTML = "";
+
+        fetchedLocation = null;
+
+        alert("Location Saved Successfully ✅");
+
+    } else {
+
+        alert(data.error);
+
+    }
+
+})
+
+.catch(error => {
+
+    console.error(error);
+
+    alert("Failed to save data");
+
+})
+
+.finally(() => {
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit";
+
+});
+
+};
 
 
       if (photoInput.files && photoInput.files[0]) {
@@ -336,43 +361,9 @@
       }
     }
 
-    function renderUsers() {
-      const listDiv = document.getElementById("usersList");
-      const users = getStoredUsers();
-
-      if (users.length === 0) {
-        listDiv.innerHTML = "<p class='empty-msg'>No users submitted yet.</p>";
-        return;
-      }
-
-      listDiv.innerHTML = users.map((user, index) => `
-        <div class="user-card">
-          <div class="detail-row"><strong>#</strong> ${index + 1}</div>
-          <div class="detail-row"><strong>Name:</strong> ${user.name}</div>
-          <div class="detail-row"><strong>Number:</strong> ${user.number}</div>
-          <div class="detail-row">
-            <strong>Photo:</strong>
-            ${user.photo ? `<img class="user-photo" src="${user.photo}" alt="User photo">` : "No photo uploaded"}
-          </div>
-          <div class="detail-row"><strong>Coordinates:</strong> ${user.lat}, ${user.lon}</div>
-          <div class="detail-row"><strong>Address:</strong> ${user.address}</div>
-          <div class="detail-row"><strong>Submitted:</strong> ${user.timestamp}</div>
-        </div>
-      `).join("");
-    }
-
-    function toggleAdmin() {
-      const outputBox = document.getElementById("outputBox");
-      const isHidden = outputBox.style.display === "none" || outputBox.style.display === "";
-
-      if (isHidden) {
-        renderUsers();
-        outputBox.style.display = "block";
-        outputBox.scrollIntoView({ behavior: "smooth" });
-      } else {
-        outputBox.style.display = "none";
-      }
-    }
+  function toggleAdmin() {
+   window.location.href = "/admin.html";
+}
   </script>
 </body>
 

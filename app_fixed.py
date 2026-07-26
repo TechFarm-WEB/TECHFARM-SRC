@@ -301,8 +301,8 @@ def admin_locations():
                 "name": row[1],
                 "phone": row[2],
                 "photo": row[3],
-                "latitude": float(row[4]) if row[4] is not None else None,
-                "longitude": float(row[5]) if row[5] is not None else None,
+                "latitude": float(row[4]),
+                "longitude": float(row[5]),
                 "address": row[6],
                 "created_at": str(row[7])
             })
@@ -310,12 +310,12 @@ def admin_locations():
         return jsonify(data)
 
     except Exception as e:
-        print("ADMIN ERROR:", e)
-
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 500
+         
+            print("ADMIN ERROR:", e)  # ADD THIS50 
+            return jsonify({
+                "success": False,
+                            "error": str(e)
+                                    }), 500
 # ==========================
 # RUN APP
 # ==========================

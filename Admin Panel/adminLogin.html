@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="adminLogin.css">
+</head>
+
+<body>
+  <div class="shape s1">
+
+  </div>
+  <div class="shape s2">
+
+  </div>
+  <div class="shape s3">
+
+  </div>
+  <main class="auth-shell">
+    <section class="brand-panel">
+      <div class="brand"><span class="brand-mark">C</span>
+        <span>Archit Shop</span>
+      </div>
+      <div class="brand-copy">
+        <p class="eyebrow">DAILY NEED OPERATIONS</p>
+        <h1>Every perfect bake starts with a clear view.</h1>
+        <p>Manage production, deliveries, and the little details that make customers come back.</p>
+      </div>
+      <div class="mini-proof"><span>✦</span>
+        Built for modern Daily Need teams</div>
+    </section>
+    <section class="login-panel">
+      <form id="loginForm" class="login-card" novalidate>
+        <div class="mobile-brand">
+          <span class="brand-mark">C</span> Archit Shop
+        </div>
+        <p class="eyebrow">ADMIN PORTAL</p>
+        <h2>Welcome back</h2>
+        <p class="subcopy">Sign in to your Daily Need workspace.</p>
+        <label for="adminName">Admin name</label>
+        <div class="input-wrap">
+          <span>♙</span>
+          <input id="adminName" name="adminName" autocomplete="name" placeholder="e.g. Archit Thakur"
+            required>
+        </div>
+        <small id="nameError" class="error"></small>
+        <label for="phoneNumber">Phone number</label>
+        <div class="input-wrap"><span>⌕</span>
+          <input id="phoneNumber" name="phoneNumber" inputmode="numeric" autocomplete="tel" placeholder="Enter 10-digit number" maxlength="15" required>
+        </div>
+        <small id="phoneError" class="error"></small>
+        <button type="submit" class="login-button">Enter dashboard<span>→</span></button>
+        <p class="safe-note">🔒 Your workspace is securely saved on this device.</p>
+      </form>
+    </section>
+  </main>
+  <script src="adminLogin.js"></script>
+</body>
+
+</html>

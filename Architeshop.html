@@ -213,37 +213,69 @@ Awaiting Delivery Partner Assignment
 
 <script>
 
-const products = [
-    {name:"Amul Gold 500ml",price:34},
-    {name:"Amul Gold 1L",price:68},
-    {name:"Amul Taaza 500ml",price:28},
-    {name:"Mother Dairy Milk",price:35},
-    {name:"Amul Butter",price:58},
-    {name:"Amul Cheese",price:120},
-    {name:"Paneer",price:85},
-    {name:"Dahi",price:40}
-];
+let products = [];
+
+async function loadProducts() {
+
+    const response =
+    await fetch("/shop-products");
+
+    products =
+    await response.json();
+
+    const container =
+    document.getElementById("products");
+
+    container.innerHTML = "";
+
+    products.forEach((product,index) => {
+
+        container.innerHTML += `
+
+        <div class="card">
+
+            <h3>${product.name}</h3>
+
+            <div class="price">
+                ₹${product.price}
+            </div>
+
+            ${
+                product.stock > 0
+
+                ?
+
+                `<button
+                    class="add-btn"
+                    onclick="addToCart(${index})">
+
+                    Add To Cart
+
+                </button>`
+
+                :
+
+                `<button
+                    class="add-btn"
+                    style="background:red;"
+                    disabled>
+
+                    Out Of Stock
+
+                </button>`
+            }
+
+        </div>
+
+        `;
+    });
+
+}
 
 let orders = [];
 let total = 0;
 
-const productDiv = document.getElementById("products");
 
-products.forEach((item,index)=>{
-
-    productDiv.innerHTML += `
-        <div class="card">
-            <h3>${item.name}</h3>
-            <div class="price">₹${item.price}</div>
-
-            <button
-                class="add-btn"
-                onclick="addToCart(${index})">
-                Add To Cart
-            </button>
-        </div>
-    `;
-});
 
 function renderCart(){
 
@@ -428,6 +460,7 @@ async function loadOrderStatus(){
 }
 
 window.onload = function(){
+    loadProducts();
 
     renderCart();
 

@@ -17,8 +17,8 @@
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <div class="sidebar-head"><a class="brand" href="#overview"><span class="brand-mark">C</span><span
-            class="brand-text">Techfarm</span>
+      <div class="sidebar-head"><a class="brand" href="#overview"><span class="brand-mark">A</span><span
+            class="brand-text">ArchitAdmin</span>
           </a><button class="icon-btn close-menu" id="closeMenu" aria-label="Close menu">
           <i class="ri-close-line"></i></button>
         </div>
@@ -30,9 +30,11 @@
             <span>Inventory</span></a>
             <a class="nav-link" href="#orders" data-page="orders">
               <i class="ri-shopping-bag-3-line"></i><span>Orders</span></a>
-              <a class="nav-link" href="#customers" data-page="customers">
-                <i class="ri-group-line"></i><span>Customers</span></>
-                <a class="nav-link" href="#delivery" data-page="delivery">
+             <a class="nav-link" href="#customers" data-page="customers">
+                <i class="ri-group-line"></i>
+                <span>Customers</span>
+              </a>
+               <a class="nav-link" href="#delivery" data-page="delivery">
                   <i class="ri-truck-line"></i>
                   <span>Delivery</span></a>
                   <a class="nav-link" href="#sales" data-page="sales">
@@ -44,6 +46,11 @@
                   <a class="nav-link" href="#settings" data-page="settings">
                     <i class="ri-settings-3-line"></i>
                     <span>Settings</span></a>
+                    <a class="nav-link"
+   href="/Architeshop.html"></i>
+    <span>E-Shop</span>
+
+</a>
                   </nav>
 
       <div class="sidebar-bottom">
@@ -160,16 +167,28 @@
           <div class="table-wrap">
             <table>
               <thead>
-                <tr>
-                  <th data-sort="id">Product ID</th>
-                  <th data-sort="name">Product name</th>
-                  <th>Category</th>
-                  <th data-sort="stock">Stock</th>
-                  <th data-sort="price">Price</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
+<tr>
+
+    <th>ID</th>
+
+    <th>Product</th>
+
+    <th>Category</th>
+
+    <th>Current Stock</th>
+
+    <th>Price</th>
+
+    <th>Status</th>
+
+    <th>Add Qty</th>
+
+    <th>Remove Qty</th>
+
+    <th>Save</th>
+
+</tr>
+</thead>
               <tbody id="inventoryBody"></tbody>
             </table>
           </div>
@@ -247,6 +266,7 @@
                   <th>Status</th>
                   <th>ETA</th>
                   <th>Tracking</th>
+                  <th>Delivery Address</th>
                 </tr>
               </thead>
               <tbody id="deliveryBody"></tbody>
@@ -401,6 +421,20 @@
         id="confirmAction">Confirm</button></div>
   </div>
   <div id="toastStack" class="toast-stack"></div>
+  <script>
+
+if(
+    localStorage.getItem(
+        "isLoggedIn"
+    ) !== "true"
+){
+
+    window.location.href =
+    "/admin-login";
+
+}
+
+</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="admin.js"></script>
 </body>

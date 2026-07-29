@@ -106,24 +106,7 @@ function seed() {
       date: i < 5 ? today : "2026-07-25",
     };
   });
-  state.deliveries = state.orders
-    .slice(0, 6)
-    .map((o, i) => ({
-      id: `DLV-${6001 + i}`,
-      vendor: i % 2 ? "Crumbly Central" : "Northside Kitchen",
-      customer: o.customer,
-      driver: ["James Cole", "Aisha Khan", "Mateo Silva", "Priya Shah"][i % 4],
-      order: o.id,
-      status: [
-        "Packed",
-        "Out For Delivery",
-        "Delivered",
-        "Pending",
-        "Cancelled",
-        "Delivered",
-      ][i],
-      eta: i === 2 ? "Delivered" : `${25 + i * 7} mins`,
-    }));
+  state.deliveries = [];
   state.sales = state.orders.map((o, i) => ({
     id: `INV-${8801 + i}`,
     customer: o.customer,
@@ -231,43 +214,7 @@ function calculateSales() {
     .toFixed(2);
 }
 function renderInventory() {
-  const q = $("#inventorySearch").value.toLowerCase(),
-    f = $("#inventoryFilter").value;
-  let rows = state.inventory.filter(
-    (x) =>
-      (!q || `${x.id} ${x.name} ${x.category}`.toLowerCase().includes(q)) &&
-      (f === "all" || statusFor(x.stock) === f),
-  );
-  const per = 6,
-    total = Math.max(1, Math.ceil(rows.length / per));
-  inventoryPage = Math.min(inventoryPage, total);
-  rows = rows.slice((inventoryPage - 1) * per, inventoryPage * per);
-  $("#inventoryBody").innerHTML =
-    rows
-      .map(
-        (x) =>
-          `<tr><td><b>${x.id}</b></td><td>
-        <div class="prod-cell"><span class="product-avatar">
-        <i class="${icons[x.category] || "ri-cake-3-line"}">
-        </i></span>${x.name}</div></td>
-        <td>${x.category}</td>
-        <td>${x.stock} units</td>
-        <td>${money(x.price)}</td>
-        <td>${badge(statusFor(x.stock))}</td>
-        <td><div class="row-actions">
-        <button class="small-btn" title="Edit" onclick="editProduct('${x.id}')">
-        <i class="ri-pencil-line"></i></button>
-        <button class="small-btn" title="Delete" onclick="askDeleteProduct('${x.id}')">
-        <i class="ri-delete-bin-line"></i>
-        </button>
-        </div></td></tr>`,
-      )
-      .join("") || `<tr><td colspan="7">No products found.</td></tr>`;
-  $("#inventoryPagination").innerHTML = Array.from(
-    { length: total },
-    (_, i) =>
-      `<button class="page-btn ${i + 1 === inventoryPage ? "active" : ""}" onclick="setInventoryPage(${i + 1})">${i + 1}</button>`,
-  ).join("");
+    loadInventory();
 }
 function setInventoryPage(p) {
   inventoryPage = p;
@@ -281,9 +228,81 @@ function filterInventory() {
   inventoryPage = 1;
   renderInventory();
 }
-function loadInventory() {
-  renderInventory();
+
+async function loadInventory(){
+
+    console.log("DATABASE INVENTORY LOADED");
+
+    const response =
+    await fetch("/inventory-list");
+
+    const data =
+    await response.json();
+
+    const tbody =
+    document.getElementById("inventoryBody");
+
+    tbody.innerHTML = "";
+
+    data.forEach(item=>{
+
+        tbody.innerHTML += `
+        <tr>
+
+            <td>${item.id}</td>
+
+            <td>${item.name}</td>
+
+            <td>${item.category}</td>
+
+            <td>${item.stock} Units</td>
+
+            <td>₹${item.price}</td>
+
+            <td>
+
+                ${item.stock > 10
+                ? "Available"
+                : "Low Stock"}
+
+            </td>
+
+            <td>
+
+                <!-- Stock Add Box -->
+
+                <input
+                    type="number"
+                    min="0"
+                    placeholder="Add"
+                    id="add_${item.id}"
+                    style="width:70px;">
+
+                <!-- Stock Remove Box -->
+
+                <input
+                    type="number"
+                    min="0"
+                    placeholder="Remove"
+                    id="remove_${item.id}"
+                    style="width:80px;">
+
+                <button
+                    class="small-btn"
+                    onclick="updateStock(${item.id},${item.stock})">
+
+                    Save
+
+                </button>
+
+            </td>
+
+        </tr>
+        `;
+    });
+
 }
+
 function addProduct(data) {
   const next = 104 + state.inventory.length;
   state.inventory.push({
@@ -368,29 +387,114 @@ function filterOrders() {
   ordersPage = 1;
   renderOrders();
 }
-function loadOrders() {
-  renderOrders();
+
+async function loadOrders() {
+
+    try {
+
+        const response =await fetch("/admin-orders");
+
+        const data = await response.json();
+
+        const tbody =
+        document.getElementById("ordersBody");
+
+        tbody.innerHTML = "";
+
+        data.forEach(order => {
+
+            tbody.innerHTML += `
+            <tr>
+
+                <td>${order.order_id}</td>
+
+                <td>${order.customer_name}</td>
+
+                <td>Archit Shop Order</td>
+
+                <td>1</td>
+
+                <td>₹${order.total_amount}</td>
+
+                <td>${order.payment_method}</td>
+
+                <td>${order.status}</td>
+
+                <td>
+
+                    <span style="
+                    padding:6px 12px;
+                    border-radius:20px;
+                    background:${
+                        order.status === "Assigned"
+                        ? "#d4edda"
+                        : "#fff3cd"
+                    };
+                    color:${
+                        order.status === "Assigned"
+                        ? "green"
+                        : "#856404"
+                    };
+                    font-weight:bold;">
+
+                    ${order.status}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                ${
+                    order.status === "Assigned"
+
+                    ?
+
+                    `<button
+                    class="small-btn"
+                    style="
+                    background:green;
+                    color:white;"
+                    disabled>
+
+                    Assigned
+
+                    </button>`
+
+                    :
+
+                    `<button
+                    class="small-btn"
+                    style="
+                    background:#ff9800;
+                    color:white;"
+                    onclick="showPartnerSelection(${order.id})"
+                    Assign
+
+                    </button>`
+                }
+
+                </td>
+
+            </tr>
+            `;
+
+        });
+
+    } catch(error) {
+
+        console.error(
+            "Load Orders Error",
+            error
+        );
+
+    }
+
 }
-function confirmOrder(id) {
-  let x = state.orders.find((x) => x.id === id);
-  x.status = "Confirmed";
-  save();
-  renderAll();
-  showToast("Order confirmed");
-}
-function cancelOrder(id) {
-  askConfirm(
-    "Cancel order?",
-    "This order will be marked as cancelled.",
-    () => {
-      state.orders.find((x) => x.id === id).status = "Cancelled";
-      save();
-      renderAll();
-      showToast("Order cancelled", "ri-close-circle-line");
-    },
-    "Cancel order",
-  );
-}
+
+
+      
+  
 function viewOrder(id) {
   const x = state.orders.find((x) => x.id === id);
   $("#orderModalTitle").textContent = x.id;
@@ -409,24 +513,67 @@ function deliveryProgress(s) {
     }[s] || 0
   );
 }
-function renderDelivery() {
-  const q = $("#deliverySearch").value.toLowerCase(),
-    f = $("#deliveryFilter").value,
-    rows = state.deliveries.filter(
-      (x) =>
-        (!q || Object.values(x).join(" ").toLowerCase().includes(q)) &&
-        (f === "all" || x.status === f),
-    );
-  $("#deliveryBody").innerHTML =
-    rows
-      .map(
-        (x) =>
-          `<tr><td><b>${x.id}</b></td><td>${x.vendor}</td><td>${x.customer}</td><td>${x.driver}</td><td>${x.order}</td><td>${badge(x.status)}</td><td>${x.eta}</td><td><button class="ghost-btn" onclick="openDelivery('${x.id}')">Track</button></td></tr>`,
-      )
-      .join("") || `<tr><td colspan="8">No deliveries found.</td></tr>`;
+async function renderDelivery() {
+
+    const response =
+    await fetch("/real-delivery-orders");
+
+    const data =
+    await response.json();
+
+    const tbody =
+    document.getElementById("deliveryBody");
+
+    tbody.innerHTML = "";
+
+    data.forEach(order => {
+
+        tbody.innerHTML += `
+        <tr>
+
+            <td><b>DLV-${order.id}</b></td>
+
+            <td>TechFarm</td>
+
+            <td>${order.customer_name}</td>
+
+            <td>${order.driver_name}</td>
+
+            <td>${order.order_id}</td>
+
+            <td>${order.status}</td>
+
+            <td>30 mins</td>
+
+            <td>
+                <button class="ghost-btn">
+                    Track
+                </button>
+            </td>
+
+            <td  style="
+               max-width:300px;
+               word-wrap:break-word;
+               white-space:normal;">
+                 ${order.delivery_address || "-"}
+           </td>
+
+        </tr>
+        `;
+    });
+
+    if(data.length === 0){
+
+        tbody.innerHTML =
+        `<tr>
+            <td colspan="8">
+                No deliveries found.
+            </td>
+        </tr>`;
+    }
 }
-function loadDelivery() {
-  renderDelivery();
+async function loadDelivery() {
+    await renderDelivery();
 }
 function filterDelivery() {
   renderDelivery();
@@ -724,21 +871,30 @@ function loadDashboard() {
   buildCharts();
 }
 function renderAll() {
+
   updateDashboardCards();
+
   renderOverview();
-  renderInventory();
+
+  loadInventory();
+
   renderOrders();
+
   renderDelivery();
+
   renderSales();
+
   renderCustomers();
+
   renderReports();
+
   buildCharts();
 }
 document.addEventListener("DOMContentLoaded", () => {
-  if (localStorage.getItem("isLoggedIn") !== "true") {
+ /* if (localStorage.getItem("isLoggedIn") !== "true") {
     window.location.href = "admin.html";
     return;
-  }
+  }*/
   loadLocalStorage();
   if (localStorage.getItem("bakeryTheme") === "dark") toggleDarkMode(true);
   loadDashboard();
@@ -803,15 +959,11 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmFn?.();
     closeModal();
   };
-  $("#inventorySearch").oninput = searchInventory;
-  $("#inventoryFilter").onchange = filterInventory;
+  $("#inventorySearch").oninput = loadInventory;
+  $("#inventoryFilter").onchange = loadInventory;
   $("#inventorySort").onclick = () => {
-    state.inventory.sort((a, b) =>
-      invSortAsc ? a.stock - b.stock : b.stock - a.stock,
-    );
-    invSortAsc = !invSortAsc;
-    renderInventory();
-  };
+    loadInventory();
+};
   $("#orderSearch").oninput = filterOrders;
   $("#orderFilter").onchange = filterOrders;
   $("#deliverySearch").oninput = filterDelivery;
@@ -863,6 +1015,13 @@ window.editProduct = editProduct;
 window.askDeleteProduct = askDeleteProduct;
 window.setInventoryPage = setInventoryPage;
 window.setOrdersPage = setOrdersPage;
+function confirmOrder(id) {
+    console.log("Order confirmed:", id);
+}
+
+function cancelOrder(id) {
+    console.log("Order cancelled:", id);
+}
 window.confirmOrder = confirmOrder;
 window.cancelOrder = cancelOrder;
 window.viewOrder = viewOrder;
@@ -885,3 +1044,214 @@ window.toggleDarkMode = toggleDarkMode;
 window.showToast = showToast;
 window.saveLocalStorage = saveLocalStorage;
 window.loadLocalStorage = loadLocalStorage;
+window.assignPartner = assignPartner;
+
+const deliveryPartners = [
+
+{
+    name:"Rahul Sharma",
+    phone:"9876543210"
+},
+{
+    name:"Amit Kumar",
+    phone:"9876543211"
+},
+{
+    name:"Vikash Singh",
+    phone:"9876543212"
+},
+{
+    name:"Rohit Verma",
+    phone:"9876543213"
+},
+{
+    name:"Sandeep Patel",
+    phone:"9876543214"
+},
+{
+    name:"Ankit Yadav",
+    phone:"9876543215"
+},
+{
+    name:"Manoj Gupta",
+    phone:"9876543216"
+},
+{
+    name:"Ajay Mishra",
+    phone:"9876543217"
+},
+{
+    name:"Pankaj Sharma",
+    phone:"9876543218"
+},
+{
+    name:"Deepak Kumar",
+    phone:"9876543219"
+}
+
+];
+
+function showPartnerSelection(orderId){
+
+    let options = "";
+
+    deliveryPartners.forEach((p,index)=>{
+
+        options +=
+        `${index+1}. ${p.name}\n`;
+
+    });
+
+    const selected =
+    prompt(
+        "Select Delivery Partner:\n\n" +
+        options
+    );
+
+    if(!selected){
+        return;
+    }
+
+    const partner =
+    deliveryPartners[
+        parseInt(selected)-1
+    ];
+
+    if(!partner){
+
+        alert("Invalid Choice");
+
+        return;
+    }
+
+    assignPartner(
+        orderId,
+        partner.name,
+        partner.phone
+    );
+}
+
+
+
+window.assignPartner = assignPartner;
+window.loadOrders = loadOrders;
+async function assignPartner(
+    id,
+    partnerName,
+    partnerPhone
+){
+
+    try{
+
+        const response = await fetch("/assign-partner", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+            },
+    body: JSON.stringify({
+        id: id,
+        partner_name: partnerName,
+        partner_phone: partnerPhone
+    })
+    });
+
+        const result =
+        await response.json();
+
+        if(result.success){
+
+            showToast(
+                "Partner Assigned Successfully"
+            );
+
+            loadOrders();
+
+            loadDelivery();
+
+        }else{
+
+            alert(result.error);
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        alert("Assign Failed");
+
+    }
+
+}
+
+window.showPartnerSelection = showPartnerSelection;
+
+//--------------------------------------------------
+// INVENTORY UPDATE
+//--------------------------------------------------
+
+async function updateStock(id,currentStock){
+
+    const addQty =
+    parseInt(
+        document.getElementById(
+            `add_${id}`
+        ).value
+    ) || 0;
+
+    const removeQty =
+    parseInt(
+        document.getElementById(
+            `remove_${id}`
+        ).value
+    ) || 0;
+
+    const finalStock =
+    currentStock +
+    addQty -
+    removeQty;
+
+    const response =
+    await fetch(
+        "/update-inventory",
+        {
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                id:id,
+
+                stock:finalStock
+
+            })
+        }
+    );
+
+    const result =
+    await response.json();
+
+    if(result.success){
+
+        showToast(
+            "Inventory Updated Successfully"
+        );
+
+        loadInventory();
+
+    }else{
+
+        alert(
+            result.error
+        );
+
+    }
+
+}
+
+window.updateStock = updateStock;
+
+

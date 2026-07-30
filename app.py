@@ -8,7 +8,7 @@ app = Flask(__name__)
 def home():
     return send_from_directory(".", "index.html")
 
-@app.route('/style.css')
+@app.route('/style.css')  
 def style():
     return send_from_directory('.', 'style.css')
 
@@ -24,6 +24,29 @@ def script():
 @app.route('/images/<path:filename>')
 def images(filename):
     return send_from_directory('images', filename)
+
+
+@app.route("/admin")
+def admin_dashboard():
+    return send_from_directory("Admin Panel","admin.html")
+
+@app.route("/admin.css")
+def admin_css():
+
+    return send_from_directory("Admin Panel","admin.css")
+@app.route("/admin.js")
+def admin_js():
+
+    return send_from_directory("Admin Panel","admin.js" )
+@app.route("/adminPanel")
+def admin_login():
+    return send_from_directory("Admin Panel", "adminLogin.html")
+@app.route("/adminLogin.css")
+def admin_login_css():
+    return send_from_directory("Admin Panel", "adminLogin.css")
+@app.route("/adminLogin.js")
+def admin_login_js():
+    return send_from_directory("Admin Panel", "adminLogin.js")
 
 @app.route('/login.html')
 def login_page():

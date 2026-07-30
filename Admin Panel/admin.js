@@ -1,5 +1,6 @@
 /* Daily Operations UI — state is isolated behind storage helpers for easy API replacement. */
-const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+const $ = (s) => document.querySelector(s),
+  $$ = (s) => [...document.querySelectorAll(s)];
 
 const store = {
   get: (k, f) => {
@@ -57,7 +58,7 @@ function seed() {
     ["French Croissant", "Croissant", 63, 2.9],
     ["Vanilla Cupcakes", "Cupcakes", 31, 3.5],
   ];
-  
+
   state.inventory = products.map((p, i) => ({
     id: `PRD-${String(i + 101).padStart(3, "0")}`,
     name: p[0],
@@ -106,24 +107,22 @@ function seed() {
       date: i < 5 ? today : "2026-07-25",
     };
   });
-  state.deliveries = state.orders
-    .slice(0, 6)
-    .map((o, i) => ({
-      id: `DLV-${6001 + i}`,
-      vendor: i % 2 ? "Crumbly Central" : "Northside Kitchen",
-      customer: o.customer,
-      driver: ["James Cole", "Aisha Khan", "Mateo Silva", "Priya Shah"][i % 4],
-      order: o.id,
-      status: [
-        "Packed",
-        "Out For Delivery",
-        "Delivered",
-        "Pending",
-        "Cancelled",
-        "Delivered",
-      ][i],
-      eta: i === 2 ? "Delivered" : `${25 + i * 7} mins`,
-    }));
+  state.deliveries = state.orders.slice(0, 6).map((o, i) => ({
+    id: `DLV-${6001 + i}`,
+    vendor: i % 2 ? "Crumbly Central" : "Northside Kitchen",
+    customer: o.customer,
+    driver: ["James Cole", "Aisha Khan", "Mateo Silva", "Priya Shah"][i % 4],
+    order: o.id,
+    status: [
+      "Packed",
+      "Out For Delivery",
+      "Delivered",
+      "Pending",
+      "Cancelled",
+      "Delivered",
+    ][i],
+    eta: i === 2 ? "Delivered" : `${25 + i * 7} mins`,
+  }));
   state.sales = state.orders.map((o, i) => ({
     id: `INV-${8801 + i}`,
     customer: o.customer,

@@ -46,6 +46,7 @@ fetch("/admin-login-api", {
 .then(result => {
 
     console.log(result);
+   
 
     if(result.success){
 
@@ -57,6 +58,11 @@ fetch("/admin-login-api", {
         localStorage.setItem(
             "phoneNumber",
             phone
+        );
+
+        localStorage.setItem(
+            "isLoggedIn",
+            "true"
         );
 
         window.location.href = "/admin";
@@ -81,51 +87,4 @@ fetch("/admin-login-api", {
 });
 });
 
-.premium-lock-card{
 
-    display:flex;
-
-    position:fixed;
-
-    top:50%;
-
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    z-index:9999;
-}
-
-.premium-card{
-
-    background:#fff;
-
-    padding:35px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    box-shadow:0 15px 50px rgba(0,0,0,.2);
-
-    width:320px;
-}
-
-.upgrade-btn{
-
-    margin-top:15px;
-
-    padding:12px 25px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#ff9800;
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-weight:600;
-}

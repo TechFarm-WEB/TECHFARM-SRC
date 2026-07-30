@@ -513,6 +513,18 @@ function deliveryProgress(s) {
     }[s] || 0
   );
 }
+
+function logout(){
+
+    fetch("/admin-logout")
+    .then(() => {
+
+        window.location.href =
+        "/admin-login";
+
+    });
+
+}
 async function renderDelivery() {
 
     const response =
@@ -680,6 +692,7 @@ function renderReports() {
     .join("");
 }
 function buildCharts() {
+  navigate("overview");
   if (!window.Chart) return;
   Object.values(charts).forEach((c) => c.destroy());
   const tc = getComputedStyle(document.body).getPropertyValue("--muted"),
@@ -836,6 +849,37 @@ function askConfirm(title, text, fn, label) {
   openModal("confirmModal");
 }
 function navigate(page) {
+
+ const lockedPages = [
+    "overview",
+    "customers",
+    "sales",
+    "reports",
+    "settings"
+];
+
+if(lockedPages.includes(page)){
+
+    alert(
+      "🔒 Premium Plan Required\n\nUpgrade your plan to access this feature."
+    );
+
+    return;
+}
+
+const lockCard =
+document.getElementById("premiumLockCard");
+
+if(lockCard){
+
+    if(lockedPages.includes(page)){
+        lockCard.style.display = "flex";
+    }else{
+        lockCard.style.display = "none";
+    }
+
+}
+
   $$(".page").forEach((x) => x.classList.toggle("active", x.id === page));
   $$(".nav-link[data-page]").forEach((x) =>
     x.classList.toggle("active", x.dataset.page === page),
@@ -847,11 +891,11 @@ function navigate(page) {
 }
 function logout() {
   localStorage.removeItem("isLoggedIn");
-  window.location.href = "admin.html";
+  window.location.href = "/admin-login";
 }
 function loadDashboard() {
   const name = localStorage.getItem("adminName") || "Admin";
-  $("#welcomeName").textContent = name.split(" ")[0];
+ $("#welcomeName").textContent = "Archit";
   $("#profileName").textContent = name;
   $("#avatar").textContent = name[0].toUpperCase();
   $("#year").textContent = new Date().getFullYear();
@@ -891,10 +935,10 @@ function renderAll() {
   buildCharts();
 }
 document.addEventListener("DOMContentLoaded", () => {
- /* if (localStorage.getItem("isLoggedIn") !== "true") {
-    window.location.href = "admin.html";
+  if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "/admin-login";
     return;
-  }*/
+  }
   loadLocalStorage();
   if (localStorage.getItem("bakeryTheme") === "dark") toggleDarkMode(true);
   loadDashboard();

@@ -1,9 +1,9 @@
-from flask import Flask, request, send_from_directory, jsonify
+from flask import Flask, request, send_from_directory, jsonify, session, redirect
 import psycopg2 ,requests
 
 
 app = Flask(__name__)
-
+app.secret_key = "techfarm_admin_secret"
 
 # ==========================
 # DATABASE CONNECTION
@@ -152,13 +152,37 @@ def seed_inventory():
 
     products = [
 
-        ("Amul Gold 500ml",100,35,"Milk"),
-        ("Amul Taaza 500ml",80,30,"Milk"),
-        ("Amul Cow Milk",60,32,"Milk"),
-        ("Paneer 200g",50,90,"Dairy"),
-        ("Butter 100g",40,55,"Dairy")
+    ("Amul Gold 500ml",100,35,"Milk"),
+    ("Amul Gold 1L",100,70,"Milk"),
 
-    ]
+    ("Amul Taaza 500ml",100,30,"Milk"),
+    ("Amul Taaza 1L",100,60,"Milk"),
+
+    ("Amul Cow Milk 500ml",100,32,"Milk"),
+    ("Amul Cow Milk 1L",100,64,"Milk"),
+
+    ("Mother Dairy Full Cream 500ml",100,34,"Milk"),
+    ("Mother Dairy Full Cream 1L",100,68,"Milk"),
+
+    ("Mother Dairy Toned Milk 500ml",100,30,"Milk"),
+    ("Mother Dairy Toned Milk 1L",100,60,"Milk"),
+
+    ("Sanchi Gold 500ml",100,34,"Milk"),
+    ("Sanchi Gold 1L",100,68,"Milk"),
+
+    ("Sanchi Standard Milk 500ml",100,32,"Milk"),
+    ("Sanchi Standard Milk 1L",100,64,"Milk"),
+
+    ("Sanchi Toned Milk 500ml",100,30,"Milk"),
+    ("Sanchi Toned Milk 1L",100,60,"Milk"),
+
+    ("Sudhamrit Gold 500ml",100,34,"Milk"),
+    ("Sudhamrit Gold 1L",100,68,"Milk"),
+
+    ("Sudhamrit Toned Milk 500ml",100,30,"Milk"),
+    ("Sudhamrit Toned Milk 1L",100,60,"Milk")
+
+]
 
     for p in products:
 
@@ -179,6 +203,8 @@ def seed_inventory():
     conn.close()
 
     return "Inventory Seeded"
+
+
 
 @app.route("/inventory-list")
 def inventory_list():
@@ -497,13 +523,28 @@ def archit_eshop():
 @app.route("/admin")
 def admin_dashboard():
 
+    if not session.get("admin_logged_in"):
+        return redirect("/admin-login")
+    
     return send_from_directory(
-
         "Admin Panel",
-
         "admin.html"
-
     )
+
+@app.route("/admin-logout")
+def admin_logout():
+
+    session.pop(
+        "admin_logged_in",
+        None
+    )
+
+    return jsonify({
+        "success": True
+    })
+
+
+
 @app.route("/admin.css")
 def admin_css():
 
@@ -707,9 +748,9 @@ def save_location():
 # ADMIN LOCATION VIEW
 # ==========================
 
-@app.route("/admin.html")
-def admin_page():
-    return send_from_directory(".", "admin.html")
+# @app.route("/admin.html")
+# def admin_page():
+#     return send_from_directory(".", "admin.html")
 
     try:
 
@@ -1077,6 +1118,11 @@ def admin_login_api():
         and
         phone_number == "9653246475"
     ):
+
+        session["admin_logged_in"] = True
+
+        print("LOGIN SUCCESS")
+        print(session)
 
         return jsonify({
             "success": True

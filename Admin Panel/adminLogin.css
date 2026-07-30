@@ -262,3 +262,11 @@ body {
     display: flex
   }
 }
+
+.premium-lock-card{
+    pointer-events:none;
+}
+
+.premium-card{
+    pointer-events:auto;
+}

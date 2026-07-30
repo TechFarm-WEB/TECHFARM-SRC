@@ -15,6 +15,9 @@
 </head>
 
 <body>
+
+
+</script>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-head"><a class="brand" href="#overview"><span class="brand-mark">A</span><span
@@ -78,11 +81,12 @@
                 id="profileName">Admin</b><small>Administrator</small></span><i
               class="ri-arrow-down-s-line"></i></button></div>
       </header>
+      <div>
       <section class="page active" id="overview">
         <div class="page-title">
           <div>
             <p class="eyebrow">OVERVIEW</p>
-            <h1>Welcome back, <span id="welcomeName">Admin</span> <span>👋</span></h1>
+           <h1>जय श्री कृष्णा, <span id="welcomeName">Archit</span> 🌸</h1>
             <p>Here’s what’s happening at Techfarm today.</p>
           </div><button class="primary-btn" data-open-modal="productModal"><i class="ri-add-line"></i> Add
             product</button>
@@ -355,6 +359,12 @@
         </form>
       </section>
       <footer>© <span id="year"></span> Crumbly Bakery Operations · Crafted for delightful days.</footer>
+      </div>
+
+     
+
+
+</div>
     </main>
   </div>
   <div class="modal-backdrop" id="modalBackdrop"></div>
@@ -421,20 +431,7 @@
         id="confirmAction">Confirm</button></div>
   </div>
   <div id="toastStack" class="toast-stack"></div>
-  <script>
 
-if(
-    localStorage.getItem(
-        "isLoggedIn"
-    ) !== "true"
-){
-
-    window.location.href =
-    "/admin-login";
-
-}
-
-</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="admin.js"></script>
 </body>

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Daily Need Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+
+</script>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head"><a class="brand" href="#overview"><span class="brand-mark">A</span><span
+            class="brand-text">ArchitAdmin</span>
+          </a><button class="icon-btn close-menu" id="closeMenu" aria-label="Close menu">
+          <i class="ri-close-line"></i></button>
+        </div>
+      <nav id="sideNav">
+        <a class="nav-link active" href="#overview" data-page="overview">
+          <i class="ri-layout-grid-line"></i>
+          <span>Dashboard</span></a>
+          <a class="nav-link" href="#inventory" data-page="inventory"><i class="ri-box-3-line"></i>
+            <span>Inventory</span></a>
+            <a class="nav-link" href="#orders" data-page="orders">
+              <i class="ri-shopping-bag-3-line"></i><span>Orders</span></a>
+             <a class="nav-link" href="#customers" data-page="customers">
+                <i class="ri-group-line"></i>
+                <span>Customers</span>
+              </a>
+               <a class="nav-link" href="#delivery" data-page="delivery">
+                  <i class="ri-truck-line"></i>
+                  <span>Delivery</span></a>
+                  <a class="nav-link" href="#sales" data-page="sales">
+                <i class="ri-line-chart-line"></i>
+                <span>Sales</span></a>
+                <a class="nav-link" href="#reports" data-page="reports">
+                  <i class="ri-file-chart-line"></i>
+                  <span>Reports</span></a>
+                  <a class="nav-link" href="#settings" data-page="settings">
+                    <i class="ri-settings-3-line"></i>
+                    <span>Settings</span></a>
+                    <a class="nav-link"
+   href="/Architeshop.html"></i>
+    <span>E-Shop</span>
+
+</a>
+                  </nav>
+
+      <div class="sidebar-bottom">
+        <button class="nav-link logout" id="logoutBtn">
+          <i class="ri-logout-box-r-line"></i>
+            <span>Log out</span>
+          </button>
+        </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">
+          <i class="ri-menu-line"></i>
+        </button>
+        <div class="global-search">
+          <i class="ri-search-line"></i>
+          <input id="globalSearch" placeholder="Search products, orders, customers..." aria-label="Global search"><kbd>⌘ K</kbd>
+          <div id="searchResults" class="search-results"></div>
+        </div>
+        <div class="top-actions"><span class="date-time" id="dateTime"></span><button class="icon-btn" id="themeToggle"
+            aria-label="Toggle dark mode"><i class="ri-moon-line"></i></button><button class="icon-btn notification"
+            aria-label="Notifications"><i class="ri-notification-3-line"></i><b></b></button><button class="profile"
+            id="profileButton"><span class="avatar" id="avatar">S</span><span class="profile-copy"><b
+                id="profileName">Admin</b><small>Administrator</small></span><i
+              class="ri-arrow-down-s-line"></i></button></div>
+      </header>
+      <div>
+      <section class="page active" id="overview">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">OVERVIEW</p>
+           <h1>जय श्री कृष्णा, <span id="welcomeName">Archit</span> 🌸</h1>
+            <p>Here’s what’s happening at Techfarm today.</p>
+          </div><button class="primary-btn" data-open-modal="productModal"><i class="ri-add-line"></i> Add
+            product</button>
+        </div>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="charts-grid">
+          <article class="panel chart-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Sales overview</h3>
+                <p>Revenue from the last 7 days</p>
+              </div><select class="select-lite">
+                <option>This week</option>
+              </select>
+            </div><canvas id="salesChart"></canvas>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Stock distribution</h3>
+                <p>Across categories</p>
+              </div>
+            </div><canvas id="stockChart"></canvas>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Orders overview</h3>
+                <p>Daily order volume</p>
+              </div>
+            </div><canvas id="ordersChart"></canvas>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Weekly sales</h3>
+                <p>Performance trend</p>
+              </div>
+            </div><canvas id="weeklyChart"></canvas>
+          </article>
+        </div>
+        <div class="two-col">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>Recent orders</h3>
+                <p>Freshly received orders</p>
+              </div><a href="#orders" class="text-link">View all</a>
+            </div>
+            <div id="recentOrders" class="recent-orders"></div>
+          </article>
+          <article class="panel delivery-glance">
+            <div class="panel-head">
+              <div>
+                <h3>Delivery pulse</h3>
+                <p>Live fulfillment status</p>
+              </div><a href="#delivery" class="text-link">Manage</a>
+            </div>
+            <div id="deliveryGlance"></div>
+          </article>
+        </div>
+      </section>
+      <section class="page" id="inventory">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">CATALOGUE</p>
+            <h1>Inventory</h1>
+            <p>Keep stock levels and product pricing in shape.</p>
+          </div><button class="primary-btn" data-open-modal="productModal"><i class="ri-add-line"></i> Add
+            product</button>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-toolbar">
+            <div class="inline-search"><i class="ri-search-line"></i><input id="inventorySearch"
+                placeholder="Search inventory"></div><select id="inventoryFilter">
+              <option value="all">All stock</option>
+              <option>Available</option>
+              <option>Low Stock</option>
+              <option>Out of Stock</option>
+            </select><button class="ghost-btn" id="inventorySort"><i class="ri-sort-desc"></i> Sort stock</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+<tr>
+
+    <th>ID</th>
+
+    <th>Product</th>
+
+    <th>Category</th>
+
+    <th>Current Stock</th>
+
+    <th>Price</th>
+
+    <th>Status</th>
+
+    <th>Add Qty</th>
+
+    <th>Remove Qty</th>
+
+    <th>Save</th>
+
+</tr>
+</thead>
+              <tbody id="inventoryBody"></tbody>
+            </table>
+          </div>
+          <div id="inventoryPagination" class="pagination"></div>
+        </div>
+      </section>
+      <section class="page" id="orders">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">FULFILLMENT</p>
+            <h1>Customer orders</h1>
+            <p>Review and move every order forward.</p>
+          </div>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-toolbar">
+            <div class="inline-search"><i class="ri-search-line"></i><input id="orderSearch"
+                placeholder="Search orders"></div><select id="orderFilter">
+              <option value="all">All statuses</option>
+              <option>Pending</option>
+              <option>Confirmed</option>
+              <option>Cancelled</option>
+              <option>Delivered</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Products</th>
+                  <th>Qty</th>
+                  <th>Amount</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ordersBody"></tbody>
+            </table>
+          </div>
+          <div id="ordersPagination" class="pagination"></div>
+        </div>
+      </section>
+      <section class="page" id="delivery">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">LOGISTICS</p>
+            <h1>Delivery management</h1>
+            <p>Track orders from oven to doorstep.</p>
+          </div>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-toolbar">
+            <div class="inline-search"><i class="ri-search-line"></i><input id="deliverySearch"
+                placeholder="Search deliveries"></div><select id="deliveryFilter">
+              <option value="all">All statuses</option>
+              <option>Pending</option>
+              <option>Packed</option>
+              <option>Out For Delivery</option>
+              <option>Delivered</option>
+              <option>Cancelled</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Delivery ID</th>
+                  <th>Vendor</th>
+                  <th>Customer</th>
+                  <th>Driver</th>
+                  <th>Order</th>
+                  <th>Status</th>
+                  <th>ETA</th>
+                  <th>Tracking</th>
+                  <th>Delivery Address</th>
+                </tr>
+              </thead>
+              <tbody id="deliveryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="page" id="sales">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">REVENUE</p>
+            <h1>Sales analytics</h1>
+            <p>All settled and pending payments in one place.</p>
+          </div>
+          <div class="sales-total" id="salesTotal"></div>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Invoice ID</th>
+                  <th>Customer</th>
+                  <th>Items</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="salesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="page" id="customers">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">RELATIONSHIPS</p>
+            <h1>Customers</h1>
+            <p>Your latest customer activity.</p>
+          </div>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Phone</th>
+                  <th>Orders</th>
+                  <th>Lifetime value</th>
+                  <th>Last order</th>
+                </tr>
+              </thead>
+              <tbody id="customersBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="page" id="reports">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">REPORTING</p>
+            <h1>Business reports</h1>
+            <p>A concise read on today’s operations.</p>
+          </div>
+        </div>
+        <div class="report-cards" id="reportCards"></div>
+      </section>
+      <section class="page" id="settings">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">WORKSPACE</p>
+            <h1>Settings</h1>
+            <p>Manage your bakery workspace preferences.</p>
+          </div>
+        </div>
+        <form class="panel settings-form" id="settingsForm">
+          <div class="form-grid"><label>Company name<input id="companyName" required></label><label>Admin name<input
+                id="settingsAdminName" required></label><label>Phone number<input id="settingsPhone" inputmode="numeric"
+                required></label><label>Theme<select id="settingsTheme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select></label></div><button class="primary-btn" type="submit">Save settings</button>
+        </form>
+      </section>
+      <footer>© <span id="year"></span> Crumbly Bakery Operations · Crafted for delightful days.</footer>
+      </div>
+
+     
+
+
+</div>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">INVENTORY</p>
+        <h2 id="productModalTitle">Add product</h2>
+      </div><button class="icon-btn" data-close-modal><i class="ri-close-line"></i></button>
+    </div>
+    <form id="productForm"><input id="productEditId" type="hidden">
+      <div class="form-grid"><label>Product name<input id="productName" required></label><label>Category<select
+            id="productCategory">
+            <option>Bread</option>
+            <option>Cake</option>
+            <option>Cookies</option>
+            <option>Pastry</option>
+            <option>Donuts</option>
+            <option>Brownies</option>
+            <option>Muffins</option>
+            <option>Pizza Base</option>
+            <option>Croissant</option>
+            <option>Cupcakes</option>
+          </select></label><label>Stock quantity<input id="productStock" type="number" min="0"
+            required></label><label>Price (£)<input id="productPrice" type="number" min="0" step="0.01"
+            required></label></div>
+      <div class="modal-actions"><button type="button" class="ghost-btn" data-close-modal>Cancel</button><button
+          class="primary-btn">Save product</button></div>
+    </form>
+  </div>
+  <div class="modal" id="orderModal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">ORDER DETAILS</p>
+        <h2 id="orderModalTitle">Order</h2>
+      </div><button class="icon-btn" data-close-modal><i class="ri-close-line"></i></button>
+    </div>
+    <div id="orderModalContent"></div>
+  </div>
+  <div class="modal" id="deliveryModal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">DELIVERY</p>
+        <h2>Update delivery</h2>
+      </div><button class="icon-btn" data-close-modal><i class="ri-close-line"></i></button>
+    </div>
+    <form id="deliveryForm"><input type="hidden" id="deliveryEditId"><label>Delivery status<select id="deliveryStatus">
+          <option>Pending</option>
+          <option>Packed</option>
+          <option>Out For Delivery</option>
+          <option>Delivered</option>
+          <option>Cancelled</option>
+        </select></label>
+      <div class="tracking-steps" id="trackingSteps"></div>
+      <div class="modal-actions"><button type="button" class="ghost-btn" data-close-modal>Cancel</button><button
+          class="primary-btn">Update delivery</button></div>
+    </form>
+  </div>
+  <div class="modal confirm-modal" id="confirmModal" role="dialog" aria-modal="true">
+    <div class="confirm-icon"><i class="ri-error-warning-line"></i></div>
+    <h2 id="confirmTitle">Are you sure?</h2>
+    <p id="confirmText"></p>
+    <div class="modal-actions"><button class="ghost-btn" data-close-modal>Keep it</button><button class="danger-btn"
+        id="confirmAction">Confirm</button></div>
+  </div>
+  <div id="toastStack" class="toast-stack"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="admin.js"></script>
+</body>
+
+</html>

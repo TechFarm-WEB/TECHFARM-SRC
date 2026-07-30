@@ -1,0 +1,272 @@
+:root {
+  --ink: #25202b;
+  --muted: #746d78;
+  --cream: #ababab;
+  --accent: #3e5ad9;
+  --accent2: #faad61
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: DM Sans, Arial, sans-serif;
+  background: #201a2b;
+  overflow: hidden
+}
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  position: relative;
+  z-index: 1
+}
+
+.brand-panel {
+  padding: 42px clamp(40px, 8vw, 130px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #332242aa, #2a1b36b0)
+}
+
+.brand,
+.mobile-brand {
+  font-family: Playfair Display, serif;
+  font-size: 25px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.brand-mark {
+  font-family: Playfair Display, serif;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #789ef1, #4378db);
+  color: #fff;
+  box-shadow: 0 8px 24px #f7905c66
+}
+
+.brand-copy {
+  max-width: 570px
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  margin: 0 0 12px;
+  color: #6eb1f4
+}
+
+.brand-copy h1 {
+  font: 700 clamp(38px, 4vw, 64px)/1.05 Playfair Display, serif;
+  margin: 0 0 20px
+}
+
+.brand-copy p:last-child {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #ded4e2
+}
+
+.mini-proof {
+  font-size: 14px;
+  color: #dbd0e1
+}
+
+.mini-proof span {
+  color: #60a6f6;
+  font-size: 21px;
+  margin-right: 8px
+}
+
+.login-panel {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #fffaf5cc;
+  backdrop-filter: blur(12px)
+}
+
+.login-card {
+  width: min(100%, 410px);
+  padding: 25px
+}
+
+.mobile-brand {
+  display: none;
+  color: #342443;
+  margin-bottom: 42px
+}
+
+.login-card .eyebrow {
+  color: #388dbe
+}
+
+.login-card h2 {
+  font: 700 39px/1.1 Playfair Display, serif;
+  margin: 0 0 9px
+}
+
+.subcopy {
+  color: var(--muted);
+  margin: 0 0 35px
+}
+
+.login-card label {
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+  margin: 21px 0 8px
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e7dce0;
+  border-radius: 14px;
+  background: #fff;
+  padding: 0 14px;
+  transition: .2s
+}
+
+.input-wrap:focus-within {
+  border-color: #e4c7b9;
+  box-shadow: 0 0 0 4px #d96b3e1c
+}
+
+.input-wrap span {
+  color: #a89aa7
+}
+
+.input-wrap input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 14px 11px;
+  font: inherit;
+  background: transparent
+}
+
+.error {
+  display: block;
+  color: #3e8bbe;
+  min-height: 13px;
+  font-size: 12px;
+  margin-top: 5px
+}
+
+.login-button {
+  border: 0;
+  color: #fff;
+  width: 100%;
+  border-radius: 14px;
+  margin-top: 25px;
+  padding: 15px 18px;
+  font: 600 15px DM Sans;
+  background: linear-gradient(135deg, #3e96d9, #4d64b6);
+  box-shadow: 0 12px 24px #d96b3e44;
+  cursor: pointer;
+  transition: .2s
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 27px #d96b3e55
+}
+
+.login-button span {
+  float: right;
+  font-size: 20px;
+  line-height: 13px
+}
+
+.safe-note {
+  text-align: center;
+  font-size: 12px;
+  color: #938a94;
+  margin-top: 22px
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: .55;
+  animation: float 8s ease-in-out infinite
+}
+
+.s1 {
+  width: 400px;
+  height: 400px;
+  background: #bd5d62;
+  left: -150px;
+  top: -100px
+}
+
+.s2 {
+  width: 270px;
+  height: 270px;
+  background: #d99773;
+  left: 36%;
+  bottom: -120px;
+  animation-delay: -3s
+}
+
+.s3 {
+  width: 160px;
+  height: 160px;
+  border: 30px solid #f3ae73;
+  right: -50px;
+  top: 12%;
+  background: transparent;
+  animation-delay: -5s
+}
+
+@keyframes float {
+  50% {
+    transform: translate(25px, -20px) rotate(12deg)
+  }
+}
+
+@media(max-width:800px) {
+  body {
+    overflow: auto
+  }
+
+  .auth-shell {
+    grid-template-columns: 1fr
+  }
+
+  .brand-panel {
+    display: none
+  }
+
+  .login-panel {
+    min-height: 100vh
+  }
+
+  .mobile-brand {
+    display: flex
+  }
+}
+
+.premium-lock-card{
+    pointer-events:none;
+}
+
+.premium-card{
+    pointer-events:auto;
+}

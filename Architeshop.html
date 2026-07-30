@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archit Daily Needs - Eshop</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+}
+
+header{
+background:#2874f0;
+color:white;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.cart{
+font-size:18px;
+font-weight:bold;
+}
+
+.hero{
+background:linear-gradient(135deg,#2874f0,#42a5f5);
+color:white;
+padding:40px;
+text-align:center;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.card h3{
+font-size:16px;
+margin-bottom:8px;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#2874f0;
+margin-bottom:10px;
+}
+
+.add-btn{
+width:100%;
+padding:10px;
+background:#ff9800;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+.checkout{
+background:white;
+margin:20px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.checkout h2{
+margin-bottom:15px;
+}
+
+.checkout input,
+.checkout textarea,
+.checkout select{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.place-order{
+width:100%;
+padding:15px;
+background:#25d366;
+border:none;
+color:white;
+font-size:18px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.order-success{
+display:none;
+background:#e8fff2;
+padding:20px;
+margin:20px;
+border-radius:10px;
+border-left:5px solid green;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">🥛 Archit Daily Needs</div>
+<div class="cart">
+Cart: <span id="cartCount">0</span>
+</div>
+</header>
+
+<section class="hero">
+<h1>Fresh Dairy Products</h1>
+<p>Milk • Butter • Paneer • Dahi • Cheese</p>
+</section>
+
+<div class="products" id="products"></div>
+
+<div class="checkout">
+
+<h2>Customer Details</h2>
+
+<input type="text"
+id="customerName"
+placeholder="Customer Name">
+
+<input type="text"
+id="customerMobile"
+placeholder="Mobile Number">
+
+<textarea
+id="customerAddress"
+placeholder="Delivery Address"></textarea>
+
+<select id="paymentMethod">
+
+<option>Cash On Delivery</option>
+<option>Online Payment</option>
+<option>Pay Later</option>
+
+</select>
+
+<h2>Your Cart</h2>
+
+<div id="cartItems">
+No Products Added
+</div>
+
+<br>
+
+<h3>
+Total : ₹ <span id="grandTotal">0</span>
+</h3>
+
+<br>
+
+<button
+class="place-order"
+onclick="placeOrder()">
+
+Place Order
+
+</button>
+
+</div>
+
+<div
+class="order-success"
+id="orderSuccess">
+
+<h2>✅ Order Created Successfully</h2>
+
+<p>
+Order ID:
+<span id="orderId"></span>
+</p>
+
+<p id="orderStatus">
+Status:
+Awaiting Delivery Partner Assignment
+</p>
+
+</div>
+
+<script>
+
+let products = [];
+
+async function loadProducts() {
+
+    const response =
+    await fetch("/shop-products");
+
+    products =
+    await response.json();
+
+    const container =
+    document.getElementById("products");
+
+    container.innerHTML = "";
+
+    products.forEach((product,index) => {
+
+        container.innerHTML += `
+
+        <div class="card">
+
+            <h3>${product.name}</h3>
+
+            <div class="price">
+                ₹${product.price}
+            </div>
+
+            ${
+                product.stock > 0
+
+                ?
+
+                `<button
+                    class="add-btn"
+                    onclick="addToCart(${index})">
+
+                    Add To Cart
+
+                </button>`
+
+                :
+
+                `<button
+                    class="add-btn"
+                    style="background:red;"
+                    disabled>
+
+                    Out Of Stock
+
+                </button>`
+            }
+
+        </div>
+
+        `;
+    });
+
+}
+
+let orders = [];
+let total = 0;
+
+
+
+function renderCart(){
+
+    let html = "";
+
+    orders.forEach(item=>{
+
+        html += `<p>${item.name} - ₹${item.price}</p>`;
+    });
+
+    if(orders.length===0){
+
+        html = "No Products Added";
+    }
+
+    document.getElementById("cartItems").innerHTML =
+    html;
+
+    document.getElementById("grandTotal").innerText =
+    total;
+
+    document.getElementById("cartCount").innerText =
+    orders.length;
+}
+
+function addToCart(index){
+
+    orders.push(products[index]);
+
+    total += products[index].price;
+
+    renderCart();
+}
+
+async function placeOrder(){
+
+    const customerName =
+    document.getElementById("customerName").value.trim();
+
+    const customerMobile =
+    document.getElementById("customerMobile").value.trim();
+
+    const customerAddress =
+    document.getElementById("customerAddress").value.trim();
+
+    const paymentMethod =
+    document.getElementById("paymentMethod").value;
+
+    if(customerName===""){
+
+        alert("Enter Customer Name");
+        return;
+    }
+
+    if(orders.length===0){
+
+        alert("Add Products First");
+        return;
+    }
+
+    const orderId =
+    "ADN"+Date.now();
+
+    try{
+
+        const response =
+        await fetch("/place-order",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                orderId:orderId,
+                customerName:customerName,
+                customerMobile:customerMobile,
+                customerAddress:customerAddress,
+                paymentMethod:paymentMethod,
+                items:JSON.stringify(orders),
+                total:total
+
+            })
+        });
+
+        const data =
+        await response.json();
+
+        if(data.success){
+
+            localStorage.setItem(
+                "lastOrderId",
+                orderId
+            );
+
+            document.getElementById("orderId")
+            .innerText = orderId;
+
+            document.getElementById("orderStatus")
+            .innerText =
+            "Status: Awaiting Delivery Partner Assignment";
+
+            document.getElementById("orderSuccess")
+            .style.display = "block";
+
+            orders = [];
+            total = 0;
+
+            renderCart();
+
+            document.getElementById("customerName").value="";
+            document.getElementById("customerMobile").value="";
+            document.getElementById("customerAddress").value="";
+            document.getElementById("paymentMethod").selectedIndex=0;
+
+            window.scrollTo({
+                top:document.body.scrollHeight,
+                behavior:"smooth"
+            });
+
+        }else{
+
+            alert(data.error);
+        }
+
+    }catch(err){
+
+        console.log(err);
+
+        alert("Order Save Failed");
+    }
+}
+
+async function loadOrderStatus(){
+
+    const orderId =
+    localStorage.getItem("lastOrderId");
+
+    if(!orderId){
+        return;
+    }
+
+    try{
+
+        const response =
+        await fetch(`/order-status/${orderId}`);
+
+        const data =
+        await response.json();
+
+        if(data.success){
+
+            document.getElementById("orderSuccess")
+            .style.display = "block";
+
+            document.getElementById("orderId")
+            .innerText = data.order_id;
+
+            let statusText =
+            `Status: ${data.status}`;
+
+            if(data.partner_name){
+
+                statusText +=
+                    "\nPartner: " +
+                    data.partner_name +
+                    " (" +
+                    data.partner_phone +
+                    ")";
+            }
+
+            document.getElementById("orderStatus")
+            .innerText = statusText;
+        }
+
+    }catch(err){
+
+        console.log(err);
+    }
+}
+
+window.onload = function(){
+    loadProducts();
+
+    renderCart();
+
+    loadOrderStatus();
+
+    setInterval(
+        loadOrderStatus,
+        5000
+    );
+};
+
+</script>
+
+</body>
+</html>

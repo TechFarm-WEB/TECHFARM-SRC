@@ -152,35 +152,28 @@ def seed_inventory():
 
     products = [
 
-    ("Amul Gold 500ml",100,35,"Milk"),
-    ("Amul Gold 1L",100,70,"Milk"),
+("Mother Dairy Gold Milk 6 Liter",100,396,"Milk"),
+("Mother Dairy Gold Milk 1 Liter",100,68,"Milk"),
+("Mother Dairy Gold Milk 500ml",100,34,"Milk"),
 
-    ("Amul Taaza 500ml",100,30,"Milk"),
-    ("Amul Taaza 1L",100,60,"Milk"),
+("Mother Dairy Super T+ Milk 1 Liter",100,59,"Milk"),
+("Mother Dairy Super T Milk 1 Liter",100,56,"Milk"),
 
-    ("Amul Cow Milk 500ml",100,32,"Milk"),
-    ("Amul Cow Milk 1L",100,64,"Milk"),
+("Mother Dairy TM Milk 500ml",100,27.50,"Milk"),
 
-    ("Mother Dairy Full Cream 500ml",100,34,"Milk"),
-    ("Mother Dairy Full Cream 1L",100,68,"Milk"),
+("Mother Dairy Milk 320ml",100,18,"Milk"),
 
-    ("Mother Dairy Toned Milk 500ml",100,30,"Milk"),
-    ("Mother Dairy Toned Milk 1L",100,60,"Milk"),
+("Mother Dairy बच्चा Milk 170ml",100,7.50,"Milk"),
 
-    ("Sanchi Gold 500ml",100,34,"Milk"),
-    ("Sanchi Gold 1L",100,68,"Milk"),
+("Mother Dairy सादा मट्ठा 500ml",100,13.50,"Milk"),
 
-    ("Sanchi Standard Milk 500ml",100,32,"Milk"),
-    ("Sanchi Standard Milk 1L",100,64,"Milk"),
+("Mother Dairy मसाला मट्ठा 270ml",100,9,"Milk"),
 
-    ("Sanchi Toned Milk 500ml",100,30,"Milk"),
-    ("Sanchi Toned Milk 1L",100,60,"Milk"),
+("Mother Dairy Dahi Cup 80g",100,8.50,"Milk"),
 
-    ("Sudhamrit Gold 500ml",100,34,"Milk"),
-    ("Sudhamrit Gold 1L",100,68,"Milk"),
+("Mother Dairy Dahi Cup 200g",100,22,"Milk"),
 
-    ("Sudhamrit Toned Milk 500ml",100,30,"Milk"),
-    ("Sudhamrit Toned Milk 1L",100,60,"Milk")
+("Mother Dairy Dahi Matki 5kg",100,370,"Milk")
 
 ]
 
@@ -514,9 +507,10 @@ def assign_partner():
             "error": str(e)
         }),500
 
-@app.route("/Architeshop.html")
-def archit_eshop():
-    return send_from_directory(".", "Architeshop.html")
+@app.route("/Kanhaeshop.html")
+def kanha_eshop():
+    return send_from_directory(".", "Kanhaeshop.html")
+
 
 
 
@@ -1149,6 +1143,24 @@ def admin_login_js():
         "Admin Panel",
         "adminLogin.js"
     )
+
+@app.route("/clear-inventory")
+def clear_inventory():
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    cur.execute("DELETE FROM inventory_products")
+
+    conn.commit()
+
+    cur.close()
+    conn.close()
+
+    return "Inventory Cleared"
+
+
+
 
 @app.route("/fix-db")
 def fix_db():

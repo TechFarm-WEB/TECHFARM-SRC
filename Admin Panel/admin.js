@@ -895,7 +895,7 @@ function logout() {
 }
 function loadDashboard() {
   const name = localStorage.getItem("adminName") || "Admin";
- $("#welcomeName").textContent = "Archit";
+ $("#welcomeName").textContent = "Lalit";
   $("#profileName").textContent = name;
   $("#avatar").textContent = name[0].toUpperCase();
   $("#year").textContent = new Date().getFullYear();

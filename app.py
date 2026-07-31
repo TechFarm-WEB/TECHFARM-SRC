@@ -29,11 +29,14 @@ def get_db_connection():
 
 def send_whatsapp(phone, message):
 
+    account_sid = os.getenv(
+        "TWILIO_ACCOUNT_SID"
+    )
 
+    auth_token = os.getenv(
+        "TWILIO_AUTH_TOKEN"
+    )
 
-account_sid = os.getenv("TWILIO_ACCOUNT_SID")
-
-auth_token = os.getenv("TWILIO_AUTH_TOKEN")
     client = Client(
         account_sid,
         auth_token

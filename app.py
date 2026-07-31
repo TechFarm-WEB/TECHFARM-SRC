@@ -3,9 +3,11 @@ from twilio.rest import Client
 import psycopg2 
 import requests
 import os
+import os
+
+import os
 
 account_sid = os.getenv("TWILIO_ACCOUNT_SID")
-
 auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
 
@@ -542,7 +544,7 @@ def assign_partner():
         })
 
     except Exception as e:
-
+        print("ASSIGN ERROR:", str(e))
         return jsonify({
             "success": False,
             "error": str(e)

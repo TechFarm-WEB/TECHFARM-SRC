@@ -542,7 +542,7 @@ def assign_partner():
         })
 
     except Exception as e:
-
+        print("ASSIGN ERROR:", str(e))
         return jsonify({
             "success": False,
             "error": str(e)

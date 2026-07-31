@@ -6,9 +6,9 @@ import os
 import os
 
 import os
-
-account_sid = os.getenv("TWILIO_ACCOUNT_SID")
-auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+#etch and clean environment variables to remove any trailing spaces or hidden characters
+account_sid = os.getenv("TWILIO_ACCOUNT_SID", "").strip()
+auth_token = os.getenv("TWILIO_AUTH_TOKEN", "").strip()
 
 
 app = Flask(__name__) 
@@ -30,29 +30,25 @@ def get_db_connection():
 
 
 def send_whatsapp(phone, message):
+    # Check if credentials exist before executing
+    if not account_sid or not auth_token:
+        print("Error: Twilio credentials are not set in environment variables.")
+        return
 
-    account_sid = os.getenv(
-        "TWILIO_ACCOUNT_SID"
-    )
+    try:
+        # Initialize Twilio Client
+        client = Client(account_sid, auth_token)
 
-    auth_token = os.getenv(
-        "TWILIO_AUTH_TOKEN"
-    )
-
-    client = Client(
-        account_sid,
-        auth_token
-    )
-
-    client.messages.create(
-
-        from_="whatsapp:+14155238886",
-
-        body=message,
-
-        to=f"whatsapp:+91{phone}"
-
-    )
+        # Create and send the WhatsApp message
+        client.messages.create(
+            from_="whatsapp:+14155238886",
+            body=message,
+            to=f"whatsapp:+91{phone}"
+        )
+        print(f"Message successfully sent to {phone}")
+        
+    except Exception as e:
+        print(f"Failed to send message: {e}")
 
 def get_address_from_coordinates(lat, lon):
 

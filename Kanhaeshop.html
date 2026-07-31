@@ -15,18 +15,28 @@ font-family:Segoe UI,sans-serif;
 }
 
 body{
-background:#f5f7fb;
+    background:#f5f7fb;
+    padding-top:70px;
 }
 
 header{
-background:#2874f0;
-color:white;
-padding:15px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+    background:#2874f0;
+    color:white;
+    padding:15px 30px;
 
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    height:70px;
+
+    z-index:1000;
+}
 .logo{
 font-size:28px;
 font-weight:bold;
@@ -40,8 +50,11 @@ font-weight:bold;
 .hero{
 background:linear-gradient(135deg,#2874f0,#42a5f5);
 color:white;
-padding:40px;
+padding:50px 20px;
 text-align:center;
+
+border-bottom-left-radius:20px;
+border-bottom-right-radius:20px;
 }
 
 .hero h1{
@@ -49,11 +62,29 @@ font-size:42px;
 margin-bottom:10px;
 }
 
+.logo{
+font-size:28px;
+font-weight:bold;
+line-height:1.2;
+}
+
 .products{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
 gap:15px;
 padding:20px;
+}
+
+@media(max-width:480px){
+
+.logo{
+font-size:18px;
+}
+
+.cart{
+font-size:16px;
+}
+
 }
 
 .card{
@@ -146,6 +177,7 @@ Cart: <span id="cartCount">0</span>
 <section class="hero">
     <h1>कान्हा डेली नीड्स</h1>
     <p>दूध • दही • मट्ठा</p>
+    <p>सागर नाका चौराहा, खुरई</p>
 </section>
 
 <div class="products" id="products"></div>
@@ -162,9 +194,24 @@ placeholder="Customer Name">
 id="customerMobile"
 placeholder="Mobile Number">
 
+<button
+type="button"
+onclick="getCurrentLocation()"
+style="
+width:100%;
+padding:12px;
+margin-bottom:10px;
+background:#2874f0;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;">
+📍 Current Location Fetch Karein
+</button>
+
 <textarea
-id="customerAddress"
-placeholder="Delivery Address"></textarea>
+id="customerAddress">
+</textarea>
 
 <select id="paymentMethod">
 
@@ -464,12 +511,150 @@ async function loadOrderStatus(){
     }
 }
 
+async function getAddressFromCoords(lat, lon) {
+
+    const url =
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+
+    const response = await fetch(url, {
+        headers: {
+            "Accept-Language": "en"
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch address");
+    }
+
+    const data = await response.json();
+
+    return data.display_name || "Address not found";
+}
+
+
+let deliveryLocations = {};
+
+function fetchLocation(orderId){
+
+    navigator.geolocation.getCurrentPosition(
+
+        async (position) => {
+
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            let address = "Address not found";
+
+            try {
+
+                address =
+                await getAddressFromCoords(
+                    lat,
+                    lon
+                );
+
+            } catch (err) {
+
+                console.error(err);
+
+                address =
+                "Could not fetch address";
+            }
+
+            deliveryLocations[orderId] = {
+
+                latitude: lat,
+                longitude: lon,
+                address: address
+
+            };
+
+            console.log(
+                "FULL LOCATION:",
+                deliveryLocations[orderId]
+            );
+
+            document
+            .getElementById(
+                "deliver_" + orderId
+            )
+            .disabled = false;
+
+            alert(
+                "Location captured:\n\n" +
+                address
+            );
+        },
+
+        (error) => {
+
+            alert(
+                "Location Permission Denied"
+            );
+        }
+    );
+}
+
+
+function getCurrentLocation(){
+
+    navigator.geolocation.getCurrentPosition(
+
+        async(position)=>{
+
+            const lat =
+            position.coords.latitude;
+
+            const lon =
+            position.coords.longitude;
+
+            try{
+
+                const address =
+                await getAddressFromCoords(
+                    lat,
+                    lon
+                );
+
+                console.log(address);
+
+                document.getElementById(
+                    "customerAddress"
+                ).value = address;
+
+                alert("Location Fetched");
+
+            }catch(error){
+
+                console.log(error);
+
+                alert(
+                    "Address Fetch Failed"
+                );
+            }
+
+        },
+
+        ()=>{
+
+            alert(
+                "Location Permission Denied"
+            );
+
+        }
+
+    );
+}
+
+
 window.onload = function(){
     loadProducts();
 
     renderCart();
 
     loadOrderStatus();
+
+    getCurrentLocation();
 
     setInterval(
         loadOrderStatus,

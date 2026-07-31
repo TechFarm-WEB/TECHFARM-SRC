@@ -1093,20 +1093,20 @@ window.assignPartner = assignPartner;
 const deliveryPartners = [
 
 {
-    name:"Rahul Sharma",
-    phone:"9876543210"
+    name:"gaurav choudhary",
+    phone:"9653246475"
 },
 {
-    name:"Amit Kumar",
-    phone:"9876543211"
+    name:"gaurav",
+    phone:"8982159664"
 },
 {
-    name:"Vikash Singh",
-    phone:"9876543212"
+    name:"sakshi",
+    phone:"7415661465"
 },
 {
-    name:"Rohit Verma",
-    phone:"9876543213"
+    name:"lalit",
+    phone:"9669782818"
 },
 {
     name:"Sandeep Patel",

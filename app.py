@@ -1,8 +1,15 @@
-from flask import Flask, request, send_from_directory, jsonify, session, redirect
-import psycopg2 ,requests
+from flask import Flask, request, send_from_directory, jsonify, session, redirect 
+from twilio.rest import Client
+import psycopg2 
+import requests
+import os
+
+account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+
+auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
 
-app = Flask(__name__)
+app = Flask(__name__) 
 app.secret_key = "techfarm_admin_secret"
 
 # ==========================
@@ -17,6 +24,30 @@ def get_db_connection():
         port="5432"
     )
 
+
+
+
+def send_whatsapp(phone, message):
+
+
+
+account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+
+auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+    client = Client(
+        account_sid,
+        auth_token
+    )
+
+    client.messages.create(
+
+        from_="whatsapp:+14155238886",
+
+        body=message,
+
+        to=f"whatsapp:+91{phone}"
+
+    )
 
 def get_address_from_coordinates(lat, lon):
 
@@ -467,6 +498,7 @@ def assign_partner():
     try:
 
         data = request.get_json()
+        partner_phone = data["partner_phone"]
 
         conn = get_db_connection()
         cur = conn.cursor()
@@ -490,7 +522,13 @@ def assign_partner():
             data["partner_phone"],
             data["id"]
         ))
+        send_whatsapp(
 
+    partner_phone,
+
+    "🚚 New Delivery Assigned\n\nOpen Dashboard:\nhttps://techfarm-solutions.onrender.com/locationTracking.html"
+
+)
         conn.commit()
 
         cur.close()
@@ -1144,6 +1182,25 @@ def admin_login_js():
         "adminLogin.js"
     )
 
+
+@app.route("/get-address")
+def get_address():
+
+    lat = request.args.get("lat")
+
+    lon = request.args.get("lon")
+
+    address = get_address_from_coordinates(
+        lat,
+        lon
+    )
+
+    return jsonify({
+        "address": address
+    })
+
+
+
 @app.route("/clear-inventory")
 def clear_inventory():
 
@@ -1159,6 +1216,24 @@ def clear_inventory():
 
     return "Inventory Cleared"
 
+
+@app.route("/test-whatsapp")
+def test_whatsapp():
+
+    send_whatsapp(
+
+        "9653246475",
+
+        """
+🚚 Test Message
+
+Kanha Daily Needs
+
+WhatsApp Integration Working
+        """
+    )
+
+    return "WHATSAPP SENT"
 
 
 

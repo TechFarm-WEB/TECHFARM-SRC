@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Management | Techfarm</title>
+
+    <style>
+
+        /* =========================
+           BASIC RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f8f5;
+            color: #111713;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(247, 248, 245, 0.96);
+
+            border-bottom: 1px solid #dfe5df;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            min-height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================== */
+
+        .hero {
+            padding: 100px 0;
+        }
+
+        .hero-content {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .small-title {
+            display: inline-block;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            color: #68716b;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 7vw, 88px);
+
+            line-height: 0.95;
+
+            letter-spacing: -5px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #79a52c;
+        }
+
+        .hero p {
+            color: #66706a;
+
+            font-size: 18px;
+
+            max-width: 600px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .buttons {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 23px;
+
+            border-radius: 30px;
+
+            border: 1px solid #111713;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            display: inline-block;
+
+            transition: 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #111713;
+
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+
+            color: #111713;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           DATA PREVIEW
+        ========================== */
+
+        .data-preview {
+            background: #111713;
+
+            padding: 15px;
+
+            border-radius: 25px;
+
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .browser-top {
+            display: flex;
+
+            gap: 7px;
+
+            padding: 5px 5px 13px;
+        }
+
+        .browser-top span {
+            width: 10px;
+
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #777;
+        }
+
+        .data-screen {
+            background: linear-gradient(
+                135deg,
+                #dfffaa,
+                #ffffff
+            );
+
+            border-radius: 16px;
+
+            min-height: 350px;
+
+            padding: 28px;
+        }
+
+        .data-header {
+            height: 28px;
+
+            width: 70%;
+
+            background: #111713;
+
+            border-radius: 8px;
+
+            margin-bottom: 25px;
+        }
+
+        .data-row {
+            display: grid;
+
+            grid-template-columns:
+                1.2fr 1fr 0.7fr;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
+        }
+
+        .data-cell {
+            height: 42px;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.8
+            );
+
+            border-radius: 8px;
+        }
+
+        .data-cell.dark {
+            background: #111713;
+        }
+
+        .data-button {
+            width: 120px;
+
+            height: 35px;
+
+            background: #111713;
+
+            border-radius: 20px;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           COMMON SECTION
+        ========================== */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            max-width: 750px;
+
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    55px
+                );
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+        }
+
+        .section-title p {
+            color: #66706a;
+
+            margin-top: 18px;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           WHAT WE DO
+        ========================== */
+
+        .what-we-do {
+            border-top:
+                1px solid #dfe5df;
+
+            border-bottom:
+                1px solid #dfe5df;
+        }
+
+        .two-column {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .large-text {
+            color: #66706a;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           WHY DATA MANAGEMENT
+        ========================== */
+
+        .dark-section {
+            background: #111713;
+
+            color: white;
+        }
+
+        .dark-section
+        .small-title {
+            color: #b9c3bc;
+        }
+
+        .dark-section
+        .section-title p {
+            color: #b9c3bc;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .card-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .info-card {
+            padding: 28px;
+
+            border-radius: 18px;
+
+            border:
+                1px solid #dfe5df;
+
+            background: white;
+
+            transition: 0.2s ease;
+        }
+
+        .dark-section
+        .info-card {
+            background: #191f1b;
+
+            border-color: #2d3730;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .number {
+            color: #79a52c;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .info-card h3 {
+            margin: 15px 0 8px;
+
+            font-size: 19px;
+        }
+
+        .info-card p {
+            color: #66706a;
+
+            font-size: 14px;
+        }
+
+        .dark-section
+        .info-card p {
+            color: #aeb8b0;
+        }
+
+
+        /* =========================
+           BENEFITS
+        ========================== */
+
+        .benefits-section {
+            background: #f7f8f5;
+        }
+
+
+        /* =========================
+           REQUIREMENTS
+        ========================== */
+
+        .requirements-intro {
+            max-width: 720px;
+
+            color: #66706a;
+
+            font-size: 17px;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* =========================
+           PRICE
+        ========================== */
+
+        .price-section {
+            padding-top: 30px;
+        }
+
+        .price-box {
+            background: #bdf25b;
+
+            border-radius: 28px;
+
+            padding: 50px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .price-box p {
+            color: #4f5d43;
+
+            margin-top: 10px;
+
+            max-width: 650px;
+        }
+
+        .price {
+            font-size: 42px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+        .price small {
+            display: block;
+
+            font-size: 12px;
+
+            text-align: right;
+        }
+
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .cta {
+            text-align: center;
+        }
+
+        .cta-box {
+            background: white;
+
+            border:
+                1px solid #dfe5df;
+
+            border-radius: 28px;
+
+            padding: 70px 25px;
+        }
+
+        .cta-box p {
+            max-width: 620px;
+
+            margin: 15px auto 25px;
+
+            color: #66706a;
+        }
+
+        #message {
+            min-height: 25px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            border-top:
+                1px solid #dfe5df;
+
+            padding: 25px 0;
+
+            color: #66706a;
+
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 850px) {
+
+            .hero-content,
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .price-box {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .price small {
+                text-align: left;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+
+                letter-spacing: -3px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .data-screen {
+                min-height: 280px;
+
+                padding: 20px;
+            }
+
+            .price-box {
+                padding: 30px 25px;
+            }
+
+            .price {
+                font-size: 34px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+
+                gap: 10px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="container navbar">
+
+            <a href="#" class="logo">
+                Techfarm
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="#service">
+                    Service
+                </a>
+
+                <a href="#why">
+                    Why Needed
+                </a>
+
+                <a href="#benefits">
+                    Benefits
+                </a>
+
+                <a href="#requirements">
+                    Requirements
+                </a>
+
+                <a href="#price">
+                    Pricing
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section
+        class="hero"
+        id="service"
+    >
+
+        <div class="container hero-content">
+
+
+            <div>
+
+                <span class="small-title">
+                    TECHFARM SERVICES
+                </span>
+
+
+                <h1>
+
+                    Data
+                    <br>
+
+                    <span>
+                        Management
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Techfarm helps businesses
+                    manage, organize and digitize
+                    their data by converting
+                    unorganized or manual
+                    information into a structured
+                    digital system.
+
+                </p>
+
+
+                <div class="buttons">
+
+                    <a
+                        href="#why"
+                        class="btn btn-primary"
+                    >
+                        Explore Service
+                    </a>
+
+
+                    <a
+                        href="#requirements"
+                        class="btn btn-secondary"
+                    >
+                        View Requirements
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Data Visual -->
+
+            <div class="data-preview">
+
+                <div class="browser-top">
+
+                    <span></span>
+
+                    <span></span>
+
+                    <span></span>
+
+                </div>
+
+
+                <div class="data-screen">
+
+                    <div class="data-header">
+                    </div>
+
+
+                    <div class="data-row">
+
+                        <div
+                            class="data-cell dark">
+                        </div>
+
+                        <div
+                            class="data-cell dark">
+                        </div>
+
+                        <div
+                            class="data-cell dark">
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-row">
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-row">
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-row">
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                        <div
+                            class="data-cell">
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-button">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         WHAT WE DO
+    ========================== -->
+
+    <section
+        class="what-we-do"
+    >
+
+        <div
+            class="container two-column"
+        >
+
+            <div>
+
+                <span class="small-title">
+                    WHAT WE DO
+                </span>
+
+
+                <h2>
+
+                    Turn unorganized
+                    information into a
+                    structured digital system.
+
+                </h2>
+
+            </div>
+
+
+            <div class="large-text">
+
+                <p>
+
+                    Techfarm provides Data
+                    Management solutions that
+                    help businesses manage,
+                    organize and digitize
+                    their information.
+
+                </p>
+
+
+                <br>
+
+
+                <p>
+
+                    The goal is to make business
+                    information more structured,
+                    easier to access and easier
+                    to manage.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         WHY DATA MANAGEMENT
+    ========================== -->
+
+    <section
+        class="dark-section"
+        id="why"
+    >
+
+        <div class="container">
+
+
+            <div class="section-title">
+
+                <span class="small-title">
+
+                    WHY DATA MANAGEMENT
+                    IS NEEDED
+
+                </span>
+
+
+                <h2>
+
+                    Unorganized data can
+                    make everyday business
+                    work difficult.
+
+                </h2>
+
+
+                <p>
+
+                    Data may become difficult
+                    to manage when information
+                    is maintained manually or
+                    stored across multiple places.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="card-grid">
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        01
+                    </span>
+
+                    <h3>
+                        Maintained Manually
+                    </h3>
+
+                    <p>
+
+                        Information maintained
+                        manually can require
+                        additional time and effort
+                        to update and manage.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        02
+                    </span>
+
+                    <h3>
+                        Scattered Across Files
+                    </h3>
+
+                    <p>
+
+                        Information stored across
+                        multiple files can become
+                        difficult to organize and manage.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        03
+                    </span>
+
+                    <h3>
+                        Difficult to Search
+                    </h3>
+
+                    <p>
+
+                        Finding required information
+                        can become difficult when data
+                        is not properly structured.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        04
+                    </span>
+
+                    <h3>
+                        Difficult to Update
+                    </h3>
+
+                    <p>
+
+                        Updating information becomes
+                        harder when records are
+                        maintained in different places.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        05
+                    </span>
+
+                    <h3>
+                        Difficult to Track
+                    </h3>
+
+                    <p>
+
+                        Tracking business information
+                        can be difficult when records
+                        are not organized.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        06
+                    </span>
+
+                    <h3>
+                        Not Properly Organized
+                    </h3>
+
+                    <p>
+
+                        Unorganized information can
+                        reduce the ease of accessing
+                        and managing business records.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         BENEFITS
+    ========================== -->
+
+    <section
+        class="benefits-section"
+        id="benefits"
+    >
+
+        <div class="container">
+
+
+            <div class="section-title">
+
+                <span class="small-title">
+                    USE / BENEFITS
+                </span>
+
+
+                <h2>
+
+                    Make business information
+                    easier to manage.
+
+                </h2>
+
+
+                <p>
+
+                    Proper data management can
+                    provide businesses with better
+                    organization and easier access
+                    to information.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="card-grid">
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        01
+                    </span>
+
+                    <h3>
+                        Easier Access
+                    </h3>
+
+                    <p>
+
+                        Make business information
+                        easier to access when required.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        02
+                    </span>
+
+                    <h3>
+                        Better Organization
+                    </h3>
+
+                    <p>
+
+                        Keep information structured
+                        and better organized.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        03
+                    </span>
+
+                    <h3>
+                        Faster Retrieval
+                    </h3>
+
+                    <p>
+
+                        Help retrieve required
+                        information more efficiently.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        04
+                    </span>
+
+                    <h3>
+                        Reduced Manual Effort
+                    </h3>
+
+                    <p>
+
+                        Reduce unnecessary manual
+                        work involved in managing records.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        05
+                    </span>
+
+                    <h3>
+                        Better Tracking
+                    </h3>
+
+                    <p>
+
+                        Improve the ability to track
+                        business information.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        06
+                    </span>
+
+                    <h3>
+                        Improved Efficiency
+                    </h3>
+
+                    <p>
+
+                        Support better operational
+                        efficiency through organized data.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        07
+                    </span>
+
+                    <h3>
+                        Digital Record Keeping
+                    </h3>
+
+                    <p>
+
+                        Maintain business records
+                        in a structured digital form.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         REQUIREMENTS
+    ========================== -->
+
+    <section
+        id="requirements"
+    >
+
+        <div class="container">
+
+
+            <div class="section-title">
+
+                <span class="small-title">
+                    REQUIREMENTS
+                </span>
+
+
+                <h2>
+
+                    Understanding your
+                    data-management requirement.
+
+                </h2>
+
+
+                <p>
+
+                    Techfarm may require information
+                    from the customer to understand
+                    the data-management requirement.
+
+                </p>
+
+            </div>
+
+            <div class="card-grid">
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        01
+                    </span>
+
+                    <h3>
+                        Business Information
+                    </h3>
+
+                    <p>
+
+                        Information that helps Techfarm
+                        understand the customer's
+                        business and data needs.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        02
+                    </span>
+
+                    <h3>
+                        Current Data Process
+                    </h3>
+
+                    <p>
+
+                        Information about how the
+                        business currently manages
+                        and stores its data.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        03
+                    </span>
+
+                    <h3>
+                        Existing Information
+                    </h3>
+
+                    <p>
+
+                        Details about the type of
+                        information and records
+                        currently maintained.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <span class="number">
+                        04
+                    </span>
+
+                    <h3>
+                        Business Requirement
+                    </h3>
+
+                    <p>
+
+                        The expected outcome and
+                        requirement that the business
+                        wants the solution to address.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STARTING PRICE
+    ========================== -->
+
+    <section
+        class="price-section"
+        id="price"
+    >
+
+        <div class="container">
+
+
+            <div class="price-box">
+
+
+                <div>
+
+                    <span class="small-title">
+                        STARTING PRICE
+                    </span>
+
+
+                    <h2>
+                        Data Management
+                    </h2>
+
+                </div>
+
+
+                <div class="price">
+
+                    ₹49,999
+
+                    <small>
+                        Starting from
+                    </small>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta">
+
+        <div class="container">
+
+
+            <div class="cta-box">
+
+                <span class="small-title">
+                    NEXT STEP
+                </span>
+
+
+                <h2>
+
+                    Ready to organize
+                    your business data?
+
+                </h2>
+
+
+                <p>
+
+                    Share your data-management
+                    requirement with Techfarm so
+                    the business problem and required
+                    solution can be understood.
+
+                </p>
+
+
+                <button
+                    class="btn btn-primary"
+                    id="startButton"
+                >
+
+                    Start a Conversation
+
+                </button>
+
+
+                <p id="message"></p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <span>
+                © 2026 Techfarm
+            </span>
+
+
+            <a href="#service">
+                Back to top ↑
+            </a>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        const startButton =
+            document.getElementById("startButton");
+
+        const message =
+            document.getElementById("message");
+
+
+        startButton.addEventListener(
+            "click",
+            function () {
+
+                message.textContent =
+                    "Thanks! Please share your data-management requirements with Techfarm.";
+
+            }
+        );
+
+    </script>
+
+
+</body>
+</html>

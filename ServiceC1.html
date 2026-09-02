@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Website Development | Techfarm</title>
+
+    <style>
+        /* =========================
+           BASIC RESET
+        ========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f8f5;
+            color: #111713;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(247, 248, 245, 0.96);
+            border-bottom: 1px solid #dfe5df;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================== */
+        .hero {
+            padding: 100px 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .small-title {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #68716b;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.95;
+            letter-spacing: -5px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #79a52c;
+        }
+
+        .hero p {
+            color: #66706a;
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 23px;
+            border-radius: 30px;
+            border: 1px solid #111713;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #111713;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #111713;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           WEBSITE ILLUSTRATION
+        ========================== */
+        .website-preview {
+            background: #111713;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .browser-top {
+            display: flex;
+            gap: 7px;
+            padding: 5px 5px 13px;
+        }
+
+        .browser-top span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #777;
+        }
+
+        .screen {
+            background: linear-gradient(135deg, #dfffaa, #ffffff);
+            border-radius: 16px;
+            min-height: 350px;
+            padding: 40px 30px;
+        }
+
+        .screen-title {
+            width: 85%;
+            height: 30px;
+            background: #111713;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .screen-text {
+            width: 65%;
+            height: 12px;
+            background: #777;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .screen-text.small {
+            width: 45%;
+        }
+
+        .screen-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .screen-card {
+            height: 90px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .screen-button {
+            width: 120px;
+            height: 35px;
+            border-radius: 25px;
+            background: #111713;
+            margin-top: 25px;
+        }
+
+        /* =========================
+           COMMON SECTION
+        ========================== */
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            max-width: 700px;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(34px, 5vw, 55px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .section-title p {
+            color: #66706a;
+            margin-top: 18px;
+            font-size: 17px;
+        }
+
+        /* =========================
+           INTRODUCTION
+        ========================== */
+        .introduction {
+            border-top: 1px solid #dfe5df;
+            border-bottom: 1px solid #dfe5df;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .intro-text {
+            color: #66706a;
+            font-size: 18px;
+        }
+
+        /* =========================
+           REQUIREMENTS
+        ========================== */
+        .requirements {
+            background: #111713;
+            color: white;
+        }
+
+        .requirements .small-title {
+            color: #b9c3bc;
+        }
+
+        .requirements .section-title p {
+            color: #b9c3bc;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .requirement-card {
+            background: #191f1b;
+            border: 1px solid #2d3730;
+            padding: 28px;
+            border-radius: 18px;
+        }
+
+        .number {
+            color: #9aca3d;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .requirement-card h3 {
+            margin: 15px 0 8px;
+            font-size: 19px;
+        }
+
+        .requirement-card p {
+            color: #aeb8b0;
+            font-size: 14px;
+        }
+
+        /* =========================
+           WHAT WE BUILD
+        ========================== */
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .build-card {
+            background: white;
+            border: 1px solid #dfe5df;
+            padding: 30px;
+            border-radius: 18px;
+            min-height: 190px;
+            transition: 0.2s;
+        }
+
+        .build-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.07);
+        }
+
+        .build-card span {
+            color: #79a52c;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .build-card h3 {
+            margin: 17px 0 8px;
+        }
+
+        .build-card p {
+            color: #66706a;
+            font-size: 14px;
+        }
+
+        /* =========================
+           PRICE SECTION
+        ========================== */
+        .price-box {
+            background: #bdf25b;
+            border-radius: 28px;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .price-box p {
+            color: #4f5d43;
+            margin-top: 10px;
+            max-width: 650px;
+        }
+
+        .price {
+            font-size: 42px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .price small {
+            display: block;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        /* =========================
+           CTA
+        ========================== */
+        .cta {
+            text-align: center;
+        }
+
+        .cta-box {
+            background: white;
+            border: 1px solid #dfe5df;
+            border-radius: 28px;
+            padding: 70px 25px;
+        }
+
+        .cta-box p {
+            max-width: 600px;
+            margin: 15px auto 25px;
+            color: #66706a;
+        }
+
+        #message {
+            font-weight: bold;
+            min-height: 25px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+        footer {
+            border-top: 1px solid #dfe5df;
+            padding: 25px 0;
+            color: #66706a;
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+        @media (max-width: 850px) {
+
+            .hero-content,
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .requirements-grid,
+            .build-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .price-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .price small {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .requirements-grid,
+            .build-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screen {
+                min-height: 280px;
+            }
+
+            .price-box {
+                padding: 30px 25px;
+            }
+
+            .price {
+                font-size: 34px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+        <div class="container navbar">
+
+            <a href="#" class="logo">Techfarm</a>
+
+            <nav class="nav-links">
+                <a href="#service">Service</a>
+                <a href="#requirements">Requirements</a>
+                <a href="#build">What We Build</a>
+                <a href="#price">Pricing</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="service">
+
+        <div class="container hero-content">
+
+            <div>
+
+                <span class="small-title">
+                    TECHFARM SERVICES
+                </span>
+
+                <h1>
+                    Website<br>
+                    <span>Development</span>
+                </h1>
+
+                <p>
+                    Build or improve your digital presence with a
+                    professional website designed around your business
+                    requirements.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#requirements" class="btn btn-primary">
+                        Get Started
+                    </a>
+
+                    <a href="#build" class="btn btn-secondary">
+                        Explore Service
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Website visual -->
+
+            <div class="website-preview">
+
+                <div class="browser-top">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="screen">
+
+                    <div class="screen-title"></div>
+
+                    <div class="screen-text"></div>
+
+                    <div class="screen-text small"></div>
+
+                    <div class="screen-cards">
+                        <div class="screen-card"></div>
+                        <div class="screen-card"></div>
+                        <div class="screen-card"></div>
+                    </div>
+
+                    <div class="screen-button"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICE INTRODUCTION
+    ========================== -->
+
+    <section class="introduction">
+
+        <div class="container intro-grid">
+
+            <div>
+
+                <span class="small-title">
+                    SERVICE INTRODUCTION
+                </span>
+
+                <h2>
+                    Give your business a strong digital presence.
+                </h2>
+
+            </div>
+
+            <div class="intro-text">
+
+                <p>
+                    Techfarm can help businesses establish or improve
+                    their digital presence through websites.
+                </p>
+
+                <br>
+
+                <p>
+                    A website can present your business, services or
+                    products clearly and make it easier for customers
+                    to understand and connect with you.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         REQUIREMENTS
+    ========================== -->
+
+    <section class="requirements" id="requirements">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span class="small-title">
+                    REQUIREMENTS 
+                </span>
+
+                <h2>
+                    What we need from you
+                </h2>
+
+            </div>
+
+
+            <div class="requirements-grid">
+
+                <div class="requirement-card">
+                    <span class="number">01</span>
+                    <h3>Business / Company Name</h3>
+                    <p>
+                        Your business or company name.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">02</span>
+                    <h3>Business Description</h3>
+                    <p>
+                        A simple description of your business.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">03</span>
+                    <h3>Services or Products</h3>
+                    <p>
+                        Details about the services or products you offer.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">04</span>
+                    <h3>Target Audience</h3>
+                    <p>
+                        Information about who your website is intended for.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">05</span>
+                    <h3>Required Pages</h3>
+                    <p>
+                        The pages you want to include on the website.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">06</span>
+                    <h3>Content</h3>
+                    <p>
+                        Text and other information required for the website.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">07</span>
+                    <h3>Images / Branding Assets</h3>
+                    <p>
+                        Logo, images and other branding materials.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">08</span>
+                    <h3>Contact Details</h3>
+                    <p>
+                        Phone number, email, address and other contact details.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <span class="number">09</span>
+                    <h3>Special Functionality</h3>
+                    <p>
+                        Any special feature or functionality required.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHAT WE BUILD
+    ========================== -->
+
+    <section id="build">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span class="small-title">
+                    WHAT WE BUILD
+                </span>
+
+                <h2>
+                    Web experiences for different business needs.
+                </h2>
+
+                <p>
+                    Techfarm can build different types of customer-facing
+                    digital presence based on the business requirement.
+                </p>
+
+            </div>
+
+
+            <div class="build-grid">
+
+                <div class="build-card">
+
+                    <span>01</span>
+
+                    <h3>
+                        Business Websites
+                    </h3>
+
+                    <p>
+                        Websites that present a business clearly
+                        and professionally.
+                    </p>
+
+                </div>
+
+
+                <div class="build-card">
+
+                    <span>02</span>
+
+                    <h3>
+                        Service-Based Websites
+                    </h3>
+
+                    <p>
+                        Websites focused on explaining and presenting
+                        business services.
+                    </p>
+
+                </div>
+
+
+                <div class="build-card">
+
+                    <span>03</span>
+
+                    <h3>
+                        Product / Business Showcase
+                    </h3>
+
+                    <p>
+                        Digital spaces to showcase products,
+                        offerings and business information.
+                    </p>
+
+                </div>
+
+
+                <div class="build-card">
+
+                    <span>04</span>
+
+                    <h3>
+                        Landing Pages
+                    </h3>
+
+                    <p>
+                        Focused pages designed around a specific
+                        business objective.
+                    </p>
+
+                </div>
+
+
+                <div class="build-card">
+
+                    <span>05</span>
+
+                    <h3>
+                        Portfolio Websites
+                    </h3>
+
+                    <p>
+                        Websites for presenting work, projects,
+                        capabilities or achievements.
+                    </p>
+
+                </div>
+
+
+                <div class="build-card">
+
+                    <span>06</span>
+
+                    <h3>
+                        Customer-Facing Digital Presence
+                    </h3>
+
+                    <p>
+                        A digital presence that helps customers
+                        understand and connect with a business.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STARTING PRICE
+    ========================== -->
+
+    <section id="price">
+
+        <div class="container">
+
+            <div class="price-box">
+
+                <div>
+
+                    <span class="small-title">
+                        STARTING PRICE
+                    </span>
+
+                    <h2>
+                        Website Development
+                    </h2>
+
+                </div>
+
+
+                <div class="price">
+
+                    ₹49,999
+
+                    <small>
+                        Starting from
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <div class="cta-box">
+
+                <span class="small-title">
+                    NEXT STEP
+                </span>
+
+                <h2>
+                    Ready to build your digital presence?
+                </h2>
+
+                <p>
+                    Share your business requirements and let
+                    Techfarm understand what you need.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    id="startButton"
+                >
+                    Start a Conversation
+                </button>
+
+                <p id="message"></p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <span>
+                © 2026 Techfarm
+            </span>
+
+            <a href="#service">
+                Back to top ↑
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        const startButton =
+            document.getElementById("startButton");
+
+        const message =
+            document.getElementById("message");
+
+
+        startButton.addEventListener("click", function () {
+
+            message.textContent =
+                "Thanks! Please share your business requirements with Techfarm.";
+
+        });
+
+    </script>
+
+</body>
+</html>
